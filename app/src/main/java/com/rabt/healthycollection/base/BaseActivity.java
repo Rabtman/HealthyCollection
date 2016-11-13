@@ -41,6 +41,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         initData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     protected void setToolBar(Toolbar toolBar, String title) {
         if (toolBar == null) return;
         setSupportActionBar(toolBar);

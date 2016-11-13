@@ -8,4 +8,7 @@
     <color name="colorText">#2C2C2C</color>
     <color name="colorLogo">#FED530</color>
 
+    <color name="item_title">#000000</color>
+    <color name="date_text">#898989</color>
+
 </resources>

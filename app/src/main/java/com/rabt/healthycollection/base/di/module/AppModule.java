@@ -1,6 +1,7 @@
 package com.rabt.healthycollection.base.di.module;
 
 import com.rabt.healthycollection.base.App;
+import com.rabt.healthycollection.base.http.RetrofitManager;
 
 import javax.inject.Singleton;
 
@@ -26,5 +27,11 @@ public class AppModule {
     @Singleton
     App provideApplicationContext() {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    RetrofitManager provideRetrofitManager() {
+        return new RetrofitManager();
     }
 }

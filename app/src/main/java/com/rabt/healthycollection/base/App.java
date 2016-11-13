@@ -8,6 +8,7 @@ import com.rabt.healthycollection.base.di.component.AppComponent;
 import com.rabt.healthycollection.base.di.component.DaggerAppComponent;
 import com.rabt.healthycollection.base.di.module.AppModule;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Set;
 public class App extends Application {
 
     private static App instance;
-    private Set<Activity> actvities;
+    private Set<Activity> activities;
 
     public static synchronized App getInstance() {
         return instance;
@@ -40,19 +41,22 @@ public class App extends Application {
     }
 
     public void addActivity(Activity activity) {
-        actvities.add(activity);
+        if (activities == null) {
+            activities = new HashSet<>();
+        }
+        activities.add(activity);
     }
 
     public void removeActvity(Activity activity) {
-        if (actvities != null) {
-            actvities.remove(activity);
+        if (activities != null) {
+            activities.remove(activity);
         }
     }
 
     public void exitApp() {
-        if (actvities != null) {
-            synchronized (actvities) {
-                for (Activity activity : actvities) {
+        if (activities != null) {
+            synchronized (activities) {
+                for (Activity activity : activities) {
                     activity.finish();
                 }
             }

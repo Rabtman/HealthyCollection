@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.rabt.healthycollection.base.di.module.FragmentModule;
 import com.rabt.healthycollection.base.di.scope.FragmentScope;
+import com.rabt.healthycollection.ui.bwcomic.BWComicFragment;
 
 import dagger.Component;
 
@@ -18,4 +19,6 @@ import dagger.Component;
 public interface FragmentComponent {
 
     Activity getActivity();
+
+    void inject(BWComicFragment fragment);
 }
