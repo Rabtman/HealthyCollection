@@ -8,10 +8,14 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.orhanobut.logger.Logger;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseFragment;
 import com.rabt.healthycollection.model.bean.BWComicPage;
 import com.rabt.healthycollection.ui.bwcomic.adapter.BWComicAdapter;
+import com.rabt.healthycollection.ui.bwcomic.presenter.BWComicPresenter;
+import com.rabt.healthycollection.ui.bwcomic.view.BWComicView;
+import com.rabt.healthycollection.utils.SnackbarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +28,13 @@ import butterknife.BindView;
  * description:
  */
 
-public class BWComicFragment extends BaseFragment<BWComicPresenter> implements BWComicContract.View {
+public class BWComicFragment extends BaseFragment<BWComicPresenter> implements BWComicView {
     @BindView(R.id.swipe_layout)
     SwipeRefreshLayout mSwipeLayout;
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.view_progress)
-    ContentLoadingProgressBar progressBar;
+    ContentLoadingProgressBar mProgress;
 
     private BWComicAdapter bwComicAdapter;
     private List<BWComicPage.Page.ComicItem> mList = new ArrayList<>();
@@ -50,7 +54,7 @@ public class BWComicFragment extends BaseFragment<BWComicPresenter> implements B
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                mPresenter.getBWComicList();
             }
         });
 
@@ -60,7 +64,8 @@ public class BWComicFragment extends BaseFragment<BWComicPresenter> implements B
         bwComicAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-
+                Logger.d("getMoreBWComicList");
+                mPresenter.getMoreBWComicList();
             }
         });
 
@@ -72,10 +77,37 @@ public class BWComicFragment extends BaseFragment<BWComicPresenter> implements B
             }
         });
         mRecyclerView.setAdapter(bwComicAdapter);
+        mProgress.setVisibility(View.VISIBLE);
+        mPresenter.getBWComicList();
+    }
+
+    private void stopProgressBar() {
+        if (mSwipeLayout.isRefreshing()) {
+            mSwipeLayout.setRefreshing(false);
+        } else {
+            mProgress.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void showError(String msg) {
+        stopProgressBar();
+        SnackbarUtil.showShort(mRecyclerView, msg);
+    }
 
+    @Override
+    public void showContent(List<BWComicPage.Page.ComicItem> items) {
+        stopProgressBar();
+        mList.clear();
+        mList.addAll(items);
+        bwComicAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMoreContent(List<BWComicPage.Page.ComicItem> items, boolean hasMore) {
+        bwComicAdapter.addData(items);
+        if (!hasMore) {
+            bwComicAdapter.loadComplete();
+        }
     }
 }

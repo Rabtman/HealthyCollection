@@ -34,7 +34,6 @@ dependencies {
     compile rootProject.ext.dependencies["cardview"]
     compile rootProject.ext.dependencies["fragmentation"]
     compile rootProject.ext.dependencies["base-recyclerview-hepler"]
-
     //rx
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]
@@ -58,4 +57,6 @@ dependencies {
     releaseCompile rootProject.ext.dependencies["blockcanary-release"]
     debugCompile rootProject.ext.dependencies["leakcanary-debug"]
     releaseCompile rootProject.ext.dependencies["leakcanary-release"]
+    //log
+    compile rootProject.ext.dependencies["logger"]
 }

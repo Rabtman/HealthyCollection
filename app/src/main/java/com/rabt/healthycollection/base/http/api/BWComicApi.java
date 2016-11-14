@@ -5,7 +5,7 @@ import com.rabt.healthycollection.model.bean.BWComicPage;
 import com.rabt.healthycollection.model.http.ShowApiResponse;
 
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 
@@ -16,14 +16,9 @@ import rx.Observable;
  */
 
 public interface BWComicApi {
+    @GET("958-1")
+    Observable<ShowApiResponse<BWComicPage>> getComicList(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("type") String type, @Query("page") int page);
 
-    String BASE_URL = "http://route.showapi.com/";
-    String APP_ID = "26744";
-    String API_SIGN = "dd81d3c7bddb4b73bf09f69a1d015d8d";
-
-    @GET("958-1?showapi_appid=" + APP_ID + "&showapi_sign=" + API_SIGN + "&type={type}&page={page}")
-    Observable<ShowApiResponse<BWComicPage>> getComicList(@Path("type") String type, @Path("page") int page);
-
-    @GET("958-2?showapi_appid=" + APP_ID + "&showapi_sign=" + API_SIGN + "&id={id}")
-    Observable<ShowApiResponse<BWComicDetail>> getComicDetail(@Path("id") String id);
+    @GET("958-2")
+    Observable<ShowApiResponse<BWComicDetail>> getComicDetail(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("id") String id);
 }

@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
+import com.rabt.healthycollection.ui.bwcomic.BWComicFragment;
 
 import butterknife.BindView;
 
@@ -35,6 +36,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     DrawerLayout drawerLayout;
 
     ActionBarDrawerToggle toggle;
+    BWComicFragment bwComicFragment;
+
+    private int hideFragment = R.id.nav_comic;
+    private int showFragment = R.id.nav_comic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         toggle = new ActionBarDrawerToggle(this, drawerLayout, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        //fragment
+        bwComicFragment = new BWComicFragment();
+        loadMultipleRootFragment(R.id.main_content, 0, bwComicFragment);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

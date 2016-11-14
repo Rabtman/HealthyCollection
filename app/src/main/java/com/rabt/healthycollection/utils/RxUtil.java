@@ -2,7 +2,7 @@ package com.rabt.healthycollection.utils;
 
 import android.text.TextUtils;
 
-import com.rabt.healthycollection.base.http.exception.ApiException;
+import com.rabt.healthycollection.base.exception.ApiException;
 import com.rabt.healthycollection.model.http.ShowApiResponse;
 
 import rx.Observable;

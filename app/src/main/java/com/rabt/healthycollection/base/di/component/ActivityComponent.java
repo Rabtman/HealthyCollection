@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.rabt.healthycollection.base.di.module.ActivityModule;
 import com.rabt.healthycollection.base.di.scope.ActivityScope;
+import com.rabt.healthycollection.ui.bwcomic.BWComicDetailActivity;
 import com.rabt.healthycollection.ui.main.MainActivity;
 
 import dagger.Component;
@@ -20,5 +21,7 @@ public interface ActivityComponent {
 
     Activity getActivity();
 
-    void inject(MainActivity mainActivity);
+    void inject(MainActivity activity);
+
+    void inject(BWComicDetailActivity activity);
 }

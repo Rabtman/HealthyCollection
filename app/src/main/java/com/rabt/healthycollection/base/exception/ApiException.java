@@ -1,4 +1,4 @@
-package com.rabt.healthycollection.base.http.exception;
+package com.rabt.healthycollection.base.exception;
 
 
 public class ApiException extends Exception {

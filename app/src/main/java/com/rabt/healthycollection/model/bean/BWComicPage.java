@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class BWComicPage {
-    @SerializedName("page")
+    @SerializedName("pagebean")
     private Page page;
 
     public Page getPage() {
@@ -23,7 +23,7 @@ public class BWComicPage {
     }
 
     public static class Page {
-        @SerializedName("hasMore")
+        @SerializedName("hasMorePage")
         private boolean hasMore;
         private int currentPage;
         private String maxResult;
