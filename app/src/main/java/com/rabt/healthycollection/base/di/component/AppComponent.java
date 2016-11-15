@@ -1,5 +1,6 @@
 package com.rabt.healthycollection.base.di.component;
 
+import com.rabt.healthycollection.api.BWComicService;
 import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.di.module.AppModule;
 import com.rabt.healthycollection.base.http.RetrofitManager;
@@ -21,4 +22,6 @@ public interface AppComponent {
     App getContext();    //提供app的context
 
     RetrofitManager retrofitManager();   //提供retrofit
+
+    BWComicService bwComicService();
 }

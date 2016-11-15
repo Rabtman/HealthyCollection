@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.orhanobut.logger.Logger;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseFragment;
 import com.rabt.healthycollection.model.bean.BWComicPage;
@@ -16,6 +15,7 @@ import com.rabt.healthycollection.ui.bwcomic.adapter.BWComicAdapter;
 import com.rabt.healthycollection.ui.bwcomic.presenter.BWComicPresenter;
 import com.rabt.healthycollection.ui.bwcomic.view.BWComicView;
 import com.rabt.healthycollection.utils.SnackbarUtil;
+import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +64,7 @@ public class BWComicFragment extends BaseFragment<BWComicPresenter> implements B
         bwComicAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                Logger.d("getMoreBWComicList");
+                KLog.d("getMoreBWComicList");
                 mPresenter.getMoreBWComicList();
             }
         });

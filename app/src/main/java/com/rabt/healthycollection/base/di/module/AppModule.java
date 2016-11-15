@@ -1,5 +1,6 @@
 package com.rabt.healthycollection.base.di.module;
 
+import com.rabt.healthycollection.api.BWComicService;
 import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.http.RetrofitManager;
 
@@ -33,5 +34,11 @@ public class AppModule {
     @Singleton
     RetrofitManager provideRetrofitManager() {
         return new RetrofitManager();
+    }
+
+    @Provides
+    @Singleton
+    BWComicService provideBWComicService(RetrofitManager retrofitManager) {
+        return new BWComicService(retrofitManager);
     }
 }

@@ -1,4 +1,4 @@
-package com.rabt.healthycollection.base.http.api;
+package com.rabt.healthycollection.api;
 
 import com.rabt.healthycollection.model.bean.BWComicDetail;
 import com.rabt.healthycollection.model.bean.BWComicPage;

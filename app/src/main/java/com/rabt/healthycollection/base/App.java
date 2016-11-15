@@ -5,12 +5,12 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.github.moduth.blockcanary.BlockCanary;
-import com.orhanobut.logger.LogLevel;
-import com.orhanobut.logger.Logger;
+import com.rabt.healthycollection.BuildConfig;
 import com.rabt.healthycollection.base.di.component.AppComponent;
 import com.rabt.healthycollection.base.di.component.DaggerAppComponent;
 import com.rabt.healthycollection.base.di.module.AppModule;
 import com.rabt.healthycollection.base.exception.CrashHandler;
+import com.socks.library.KLog;
 import com.squareup.leakcanary.LeakCanary;
 
 import java.util.HashSet;
@@ -43,7 +43,7 @@ public class App extends Application {
 
         instance = this;
         //初始化日志收集
-        Logger.init(getPackageName()).logLevel(LogLevel.FULL);
+        KLog.init(BuildConfig.DEBUG, getPackageName());
         //崩溃日志收集
         CrashHandler.init(new CrashHandler(this));
         //内存泄漏检查

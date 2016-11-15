@@ -1,10 +1,7 @@
 package com.rabt.healthycollection.base.http;
 
 import com.rabt.healthycollection.BuildConfig;
-import com.rabt.healthycollection.base.http.api.BWComicApi;
 import com.rabt.healthycollection.constant.BWComicConstant;
-import com.rabt.healthycollection.model.bean.BWComicPage;
-import com.rabt.healthycollection.model.http.ShowApiResponse;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +10,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 
 /**
  * author: Rabtman
@@ -23,17 +19,18 @@ import rx.Observable;
 
 public class RetrofitManager {
 
-    private static Retrofit retrofit = null;
-    private static OkHttpClient okHttpClient = null;
-    private static BWComicApi bwComicService = null;
+    private Retrofit retrofit;
 
     public RetrofitManager() {
-        initOkHttp();
-        initRetrofit();
-        bwComicService = retrofit.create(BWComicApi.class);
+        OkHttpClient okHttpClient = initOkHttp();
+        retrofit = initRetrofit(okHttpClient);
     }
 
-    private void initOkHttp() {
+    public Retrofit getInstance() {
+        return retrofit;
+    }
+
+    private OkHttpClient initOkHttp() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
@@ -46,19 +43,15 @@ public class RetrofitManager {
         builder.writeTimeout(40, TimeUnit.SECONDS);
         //错误重连
         builder.retryOnConnectionFailure(true);
-        okHttpClient = builder.build();
+        return builder.build();
     }
 
-    private void initRetrofit() {
-        retrofit = new Retrofit.Builder()
+    private Retrofit initRetrofit(OkHttpClient okHttpClient) {
+        return retrofit = new Retrofit.Builder()
                 .baseUrl(BWComicConstant.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-    }
-
-    public Observable<ShowApiResponse<BWComicPage>> getBWComicListInfo(String type, int page) {
-        return bwComicService.getComicList(BWComicConstant.APP_ID, BWComicConstant.API_SIGN, type, page);
     }
 }
