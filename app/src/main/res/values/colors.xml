@@ -9,6 +9,8 @@
     <color name="colorLogo">#FED530</color>
 
     <color name="item_title">#000000</color>
-    <color name="date_text">#898989</color>
+    <color name="body_text">#000000</color>
+    <color name="sub_text">#898989</color>
     <color name="toast_bg">#dddfe0</color>
+    <color name="decoration_line">#898989</color>
 </resources>

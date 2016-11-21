@@ -3,6 +3,7 @@ package com.rabt.healthycollection.ui.main;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,9 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.jaeger.library.StatusBarUtil;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
-import com.rabt.healthycollection.ui.bwcomic.BWComicFragment;
+import com.rabt.healthycollection.ui.bwcomic.HealthNewsFragment;
 
 import butterknife.BindView;
 
@@ -35,7 +37,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     DrawerLayout drawerLayout;
 
     ActionBarDrawerToggle toggle;
-    BWComicFragment bwComicFragment;
+    HealthNewsFragment bwComicFragment;
 
     private int hideFragment = R.id.nav_comic;
     private int showFragment = R.id.nav_comic;
@@ -58,12 +60,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initData() {
-        setToolBar(mToolBar, "黑白漫画");
+        StatusBarUtil.setColorForDrawerLayout(mContext, drawerLayout, ContextCompat.getColor(mContext, R.color.colorPrimary));
+        setToolBar(mToolBar, getString(R.string.nav_health));
         toggle = new ActionBarDrawerToggle(this, drawerLayout, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         //fragment
-        bwComicFragment = new BWComicFragment();
+        bwComicFragment = new HealthNewsFragment();
         loadMultipleRootFragment(R.id.main_content, 0, bwComicFragment);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

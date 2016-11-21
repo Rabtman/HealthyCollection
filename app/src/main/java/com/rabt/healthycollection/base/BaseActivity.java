@@ -3,12 +3,9 @@ package com.rabt.healthycollection.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.jaeger.library.StatusBarUtil;
-import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.di.component.ActivityComponent;
 import com.rabt.healthycollection.base.di.component.DaggerActivityComponent;
 import com.rabt.healthycollection.base.di.module.ActivityModule;
@@ -38,7 +35,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         setContentView(getLayout());
         mUnbinder = ButterKnife.bind(this);
         mContext = this;
-        StatusBarUtil.setColor(mContext, ContextCompat.getColor(mContext, R.color.colorPrimary));
         inject();
         if (mPresenter != null) mPresenter.attachView(this);
         App.getInstance().addActivity(this);

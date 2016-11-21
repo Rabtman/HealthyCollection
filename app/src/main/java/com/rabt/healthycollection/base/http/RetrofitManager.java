@@ -1,7 +1,6 @@
 package com.rabt.healthycollection.base.http;
 
 import com.rabt.healthycollection.BuildConfig;
-import com.rabt.healthycollection.constant.BWComicConstant;
 
 import java.util.concurrent.TimeUnit;
 
@@ -48,7 +47,7 @@ public class RetrofitManager {
 
     private Retrofit initRetrofit(OkHttpClient okHttpClient) {
         return retrofit = new Retrofit.Builder()
-                .baseUrl(BWComicConstant.BASE_URL)
+                .baseUrl(BuildConfig.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

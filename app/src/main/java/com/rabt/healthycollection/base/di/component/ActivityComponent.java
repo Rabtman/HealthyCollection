@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.rabt.healthycollection.base.di.module.ActivityModule;
 import com.rabt.healthycollection.base.di.scope.ActivityScope;
-import com.rabt.healthycollection.ui.bwcomic.BWComicDetailActivity;
+import com.rabt.healthycollection.ui.bwcomic.HealthNewsDetailActivity;
 import com.rabt.healthycollection.ui.main.MainActivity;
 
 import dagger.Component;
@@ -23,5 +23,5 @@ public interface ActivityComponent {
 
     void inject(MainActivity activity);
 
-    void inject(BWComicDetailActivity activity);
+    void inject(HealthNewsDetailActivity activity);
 }
