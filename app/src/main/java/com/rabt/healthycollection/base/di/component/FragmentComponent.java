@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.rabt.healthycollection.base.di.module.FragmentModule;
 import com.rabt.healthycollection.base.di.scope.FragmentScope;
-import com.rabt.healthycollection.ui.bwcomic.HealthNewsFragment;
+import com.rabt.healthycollection.ui.health.HealthNewsItemFragment;
 
 import dagger.Component;
 
@@ -20,5 +20,5 @@ public interface FragmentComponent {
 
     Activity getActivity();
 
-    void inject(HealthNewsFragment fragment);
+    void inject(HealthNewsItemFragment fragment);
 }

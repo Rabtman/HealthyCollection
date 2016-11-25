@@ -1,4 +1,4 @@
-package com.rabt.healthycollection.ui.bwcomic.view;
+package com.rabt.healthycollection.ui.health.view;
 
 import com.rabt.healthycollection.base.BaseView;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;

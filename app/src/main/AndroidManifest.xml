@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.bwcomic.HealthNewsDetailActivity"
+            android:name=".ui.health.HealthNewsDetailActivity"
             android:screenOrientation="portrait" />
     </application>
 

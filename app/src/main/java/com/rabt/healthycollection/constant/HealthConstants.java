@@ -17,8 +17,8 @@ public class HealthConstants {
         TYPE.put(1, "企业要闻");
         TYPE.put(2, "医药新闻");
         TYPE.put(3, "生活贴士");
-        TYPE.put(4, "药品新闻");
+        /*TYPE.put(4, "药品新闻");
         TYPE.put(5, "食品新闻");
-        TYPE.put(6, "社会热点");
+        TYPE.put(6, "社会热点");*/
     }
 }

@@ -1,7 +1,9 @@
-package com.rabt.healthycollection.ui.bwcomic;
+package com.rabt.healthycollection.ui.health;
 
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
@@ -9,8 +11,8 @@ import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
 import com.rabt.healthycollection.constant.HealthConstants;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
-import com.rabt.healthycollection.ui.bwcomic.presenter.HealthNewsDetailPresenter;
-import com.rabt.healthycollection.ui.bwcomic.view.HealthNewsDetailView;
+import com.rabt.healthycollection.ui.health.presenter.HealthNewsDetailPresenter;
+import com.rabt.healthycollection.ui.health.view.HealthNewsDetailView;
 
 import butterknife.BindView;
 
@@ -57,9 +59,14 @@ public class HealthNewsDetailActivity extends BaseActivity<HealthNewsDetailPrese
 
     @Override
     public void showComicDetail(HealthNewsDetail.Info healthNewsDetail) {
-        mainTitle.setText(healthNewsDetail.getTitle());
         mainDate.setText(healthNewsDetail.getTime());
         mainAuthor.setText(healthNewsDetail.getAuthor());
-        mainContent.setText(healthNewsDetail.getContent());
+        if (Build.VERSION.SDK_INT >= 24) {
+            mainTitle.setText(Html.fromHtml(healthNewsDetail.getTitle(), Html.FROM_HTML_MODE_COMPACT));
+            mainContent.setText(Html.fromHtml(healthNewsDetail.getContent(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            mainTitle.setText(Html.fromHtml(healthNewsDetail.getTitle()));
+            mainContent.setText(Html.fromHtml(healthNewsDetail.getContent()));
+        }
     }
 }

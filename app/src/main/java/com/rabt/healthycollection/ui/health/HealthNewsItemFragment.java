@@ -1,7 +1,6 @@
-package com.rabt.healthycollection.ui.bwcomic;
+package com.rabt.healthycollection.ui.health;
 
 import android.content.Intent;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +12,9 @@ import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseFragment;
 import com.rabt.healthycollection.constant.HealthConstants;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
-import com.rabt.healthycollection.ui.bwcomic.adapter.HealthNewsAdapter;
-import com.rabt.healthycollection.ui.bwcomic.presenter.HealthNewsPresenter;
-import com.rabt.healthycollection.ui.bwcomic.view.HealthNewsView;
+import com.rabt.healthycollection.ui.health.adapter.HealthNewsAdapter;
+import com.rabt.healthycollection.ui.health.presenter.HealthNewsItemPresenter;
+import com.rabt.healthycollection.ui.health.view.HealthNewsView;
 import com.rabt.healthycollection.utils.SnackbarUtil;
 import com.socks.library.KLog;
 
@@ -30,13 +29,11 @@ import butterknife.BindView;
  * description:
  */
 
-public class HealthNewsFragment extends BaseFragment<HealthNewsPresenter> implements HealthNewsView {
+public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter> implements HealthNewsView {
     @BindView(R.id.swipe_layout)
     SwipeRefreshLayout mSwipeLayout;
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
-    @BindView(R.id.view_progress)
-    ContentLoadingProgressBar mProgress;
 
     private HealthNewsAdapter healthNewsAdapter;
 
@@ -47,21 +44,16 @@ public class HealthNewsFragment extends BaseFragment<HealthNewsPresenter> implem
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_healthnews;
-    }
-
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
+        return R.layout.fragment_healthnews_item;
     }
 
     @Override
     protected void initData() {
+        final int tid = getArguments().getInt(HealthConstants.HEALTHNEWS_ID, 1);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getHealthList();
+                mPresenter.getHealthList(tid);
             }
         });
 
@@ -72,7 +64,7 @@ public class HealthNewsFragment extends BaseFragment<HealthNewsPresenter> implem
             @Override
             public void onLoadMoreRequested() {
                 KLog.d("getMoreHealthList");
-                mPresenter.getMoreHealthList();
+                mPresenter.getMoreHealthList(tid);
             }
         });
 
@@ -88,15 +80,21 @@ public class HealthNewsFragment extends BaseFragment<HealthNewsPresenter> implem
             }
         });
         mRecyclerView.setAdapter(healthNewsAdapter);
-        mProgress.setVisibility(View.VISIBLE);
-        mPresenter.getHealthList();
+
+        mSwipeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(true);
+                mPresenter.getHealthList(tid);
+            }
+        });
+
+        KLog.d("getHealthList--->tid:" + tid + "|isInited:" + isInited);
     }
 
     private void stopProgressBar() {
         if (mSwipeLayout.isRefreshing()) {
             mSwipeLayout.setRefreshing(false);
-        } else {
-            mProgress.setVisibility(View.GONE);
         }
     }
 

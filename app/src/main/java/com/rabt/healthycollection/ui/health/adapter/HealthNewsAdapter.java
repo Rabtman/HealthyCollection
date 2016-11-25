@@ -1,5 +1,7 @@
-package com.rabt.healthycollection.ui.bwcomic.adapter;
+package com.rabt.healthycollection.ui.health.adapter;
 
+import android.os.Build;
+import android.text.Html;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -28,8 +30,12 @@ public class HealthNewsAdapter extends BaseQuickAdapter<HealthNewsPage.Page.Cont
 
     @Override
     protected void convert(BaseViewHolder helper, HealthNewsPage.Page.Content content) {
-        helper.setText(R.id.card_title, content.getTitle())
-                .setText(R.id.card_date, content.getTime())
+        if (Build.VERSION.SDK_INT >= 24) {
+            helper.setText(R.id.card_title, Html.fromHtml(content.getTitle(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            helper.setText(R.id.card_title, Html.fromHtml(content.getTitle()));
+        }
+        helper.setText(R.id.card_date, content.getTime())
                 .setText(R.id.card_author, content.getAuthor());
         Glide.with(mContext)
                 .load(content.getImg())

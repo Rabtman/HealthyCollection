@@ -1,4 +1,4 @@
-package com.rabt.healthycollection.ui.bwcomic.presenter;
+package com.rabt.healthycollection.ui.health.presenter;
 
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.api.HealthService;
@@ -6,7 +6,7 @@ import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.RxPresenter;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.model.http.ShowApiResponse;
-import com.rabt.healthycollection.ui.bwcomic.view.HealthNewsDetailView;
+import com.rabt.healthycollection.ui.health.view.HealthNewsDetailView;
 import com.rabt.healthycollection.utils.RxUtil;
 
 import javax.inject.Inject;

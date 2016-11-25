@@ -1,4 +1,4 @@
-package com.rabt.healthycollection.ui.bwcomic.presenter;
+package com.rabt.healthycollection.ui.health.presenter;
 
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.api.HealthService;
@@ -6,7 +6,7 @@ import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.RxPresenter;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
 import com.rabt.healthycollection.model.http.ShowApiResponse;
-import com.rabt.healthycollection.ui.bwcomic.view.HealthNewsView;
+import com.rabt.healthycollection.ui.health.view.HealthNewsView;
 import com.rabt.healthycollection.utils.RxUtil;
 
 import javax.inject.Inject;
@@ -20,20 +20,20 @@ import rx.functions.Action1;
  * description:
  */
 
-public class HealthNewsPresenter extends RxPresenter<HealthNewsView> {
+public class HealthNewsItemPresenter extends RxPresenter<HealthNewsView> {
 
     private HealthService healthService;
     private int currentPage = 1;
 
     @Inject
-    public HealthNewsPresenter(HealthService healthService) {
+    public HealthNewsItemPresenter(HealthService healthService) {
         this.healthService = healthService;
     }
 
     //获取漫画列表
-    public void getHealthList() {
+    public void getHealthList(int tid) {
         currentPage = 1;
-        Subscription subscription = healthService.getHealthListInfo(1, "", currentPage)
+        Subscription subscription = healthService.getHealthListInfo(tid, "", currentPage)
                 .compose(RxUtil.<ShowApiResponse<HealthNewsPage>>rxSchedulerHelper())
                 .compose(RxUtil.<HealthNewsPage>handleShowApiResult())
                 .subscribe(new Action1<HealthNewsPage>() {
@@ -51,8 +51,8 @@ public class HealthNewsPresenter extends RxPresenter<HealthNewsView> {
     }
 
     //加载更多
-    public void getMoreHealthList() {
-        Subscription subscription = healthService.getHealthListInfo(1, "", ++currentPage)
+    public void getMoreHealthList(int tid) {
+        Subscription subscription = healthService.getHealthListInfo(tid, "", ++currentPage)
                 .compose(RxUtil.<ShowApiResponse<HealthNewsPage>>rxSchedulerHelper())
                 .compose(RxUtil.<HealthNewsPage>handleShowApiResult())
                 .subscribe(new Action1<HealthNewsPage>() {

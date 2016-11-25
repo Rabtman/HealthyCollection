@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import com.jaeger.library.StatusBarUtil;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
-import com.rabt.healthycollection.ui.bwcomic.HealthNewsFragment;
+import com.rabt.healthycollection.ui.health.HealthNewsMainFragment;
 
 import butterknife.BindView;
 
@@ -37,10 +37,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     DrawerLayout drawerLayout;
 
     ActionBarDrawerToggle toggle;
-    HealthNewsFragment bwComicFragment;
+    HealthNewsMainFragment healthNewsMainFragment;
 
-    private int hideFragment = R.id.nav_comic;
-    private int showFragment = R.id.nav_comic;
+    private int hideFragment = R.id.nav_health;
+    private int showFragment = R.id.nav_health;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,20 +60,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initData() {
-        StatusBarUtil.setColorForDrawerLayout(mContext, drawerLayout, ContextCompat.getColor(mContext, R.color.colorPrimary));
+        StatusBarUtil.setColorForDrawerLayout(mContext, drawerLayout, ContextCompat.getColor(mContext, R.color.colorPrimary), 0);
         setToolBar(mToolBar, getString(R.string.nav_health));
         toggle = new ActionBarDrawerToggle(this, drawerLayout, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         //fragment
-        bwComicFragment = new HealthNewsFragment();
-        loadMultipleRootFragment(R.id.main_content, 0, bwComicFragment);
+        healthNewsMainFragment = new HealthNewsMainFragment();
+        loadMultipleRootFragment(R.id.main_content, 0, healthNewsMainFragment);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.nav_comic:
+                    case R.id.nav_health:
                         break;
                     case R.id.nav_setting:
                         break;
