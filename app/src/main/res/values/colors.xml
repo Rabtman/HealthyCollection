@@ -8,6 +8,9 @@
     <color name="colorText">#2C2C2C</color>
     <color name="colorLogo">#FED530</color>
 
+    <color name="divider">#d5d5d5</color>
+    <color name="mask_color">#88888888</color>
+
     <color name="item_title">#000000</color>
     <color name="body_text">#000000</color>
     <color name="sub_text">#898989</color>
