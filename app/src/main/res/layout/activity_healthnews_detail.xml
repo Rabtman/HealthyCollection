@@ -11,13 +11,9 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <include
+            layout="@layout/view_toolbar"
+            app:layout_scrollFlags="scroll|enterAlways" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -36,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/main_title"
+                android:id="@+id/detial_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorText"
@@ -44,39 +40,40 @@
                 tools:text="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈" />
 
             <TextView
-                android:id="@+id/main_author"
+                android:id="@+id/detial_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/main_title"
+                android:layout_below="@id/detial_title"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/sub_text"
                 android:textSize="@dimen/subheading"
                 tools:text="凤凰网" />
 
             <TextView
-                android:id="@+id/main_date"
+                android:id="@+id/detial_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/main_author"
+                android:layout_alignBottom="@id/detial_author"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/sub_text"
                 android:textSize="@dimen/subheading"
                 tools:text="14天前" />
 
             <ImageView
-                android:id="@+id/main_decoration_line"
+                android:id="@+id/detial_decoration_line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/main_author"
+                android:layout_below="@id/detial_author"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:src="@color/decoration_line" />
+                android:src="@color/decoration_line"
+                android:visibility="invisible" />
 
             <TextView
-                android:id="@+id/main_content"
+                android:id="@+id/detial_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/main_decoration_line"
+                android:layout_below="@id/detial_decoration_line"
                 android:textColor="@color/body_text"
                 android:textSize="@dimen/body"
                 tools:text="哈哈哈哈哈哈哈哈哈哈哈哈" />

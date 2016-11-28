@@ -1,6 +1,8 @@
 package com.rabt.healthycollection.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +29,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
     @Inject
     protected T mPresenter;
     protected Activity mContext;
+    protected ProgressDialog progressDialog;
     private Unbinder mUnbinder;
 
     @Override
@@ -35,6 +38,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         setContentView(getLayout());
         mUnbinder = ButterKnife.bind(this);
         mContext = this;
+        initProgressDialog(mContext);
         inject();
         if (mPresenter != null) mPresenter.attachView(this);
         App.getInstance().addActivity(this);
@@ -58,6 +62,25 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
                 onBackPressedSupport();
             }
         });
+    }
+
+    public void initProgressDialog(Context context) {
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("");
+        progressDialog.setMessage("加载中...");
+        progressDialog.setCanceledOnTouchOutside(false);
+    }
+
+    public void showProgress() {
+        if (progressDialog != null && !progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    public void stopProgress() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     protected ActivityComponent getActivityComponent() {

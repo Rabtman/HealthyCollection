@@ -35,6 +35,7 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
+    private int healthNewsId = 1;
     private HealthNewsAdapter healthNewsAdapter;
 
     @Override
@@ -49,11 +50,11 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
 
     @Override
     protected void initData() {
-        final int tid = getArguments().getInt(HealthConstants.HEALTHNEWS_ID, 1);
+        healthNewsId = getArguments().getInt(HealthConstants.HEALTHNEWS_ID, 1);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getHealthList(tid);
+                mPresenter.getHealthList(healthNewsId);
             }
         });
 
@@ -64,7 +65,7 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
             @Override
             public void onLoadMoreRequested() {
                 KLog.d("getMoreHealthList");
-                mPresenter.getMoreHealthList(tid);
+                mPresenter.getMoreHealthList(healthNewsId);
             }
         });
 
@@ -80,33 +81,27 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
             }
         });
         mRecyclerView.setAdapter(healthNewsAdapter);
-
-        mSwipeLayout.post(new Runnable() {
+        showProgress();
+        mPresenter.getHealthList(healthNewsId);
+        /*mSwipeLayout.post(new Runnable() {
             @Override
             public void run() {
                 mSwipeLayout.setRefreshing(true);
                 mPresenter.getHealthList(tid);
             }
-        });
-
-        KLog.d("getHealthList--->tid:" + tid + "|isInited:" + isInited);
-    }
-
-    private void stopProgressBar() {
-        if (mSwipeLayout.isRefreshing()) {
-            mSwipeLayout.setRefreshing(false);
-        }
+        });*/
+        KLog.d("getHealthList--->tid:" + healthNewsId + "|isInited:" + isInited);
     }
 
     @Override
     public void showError(String msg) {
-        stopProgressBar();
+        stopProgress();
         SnackbarUtil.showShort(mRecyclerView, msg);
     }
 
     @Override
     public void showContent(List<HealthNewsPage.Page.Content> items) {
-        stopProgressBar();
+        stopProgress();
         healthNewsAdapter.setNewData(items);
     }
 

@@ -1,6 +1,7 @@
 package com.rabt.healthycollection.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,6 +33,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
     protected Activity mActivity;
     protected Context mContext;
     protected boolean isInited = false;
+    protected ProgressDialog progressDialog;
     private Unbinder mUnbinder;
 
     @Override
@@ -51,7 +53,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(getLayout(), null);
+        mView = inflater.inflate(getLayout(), container, false);
         inject();
         return mView;
     }
@@ -61,6 +63,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
         super.onViewCreated(view, savedInstanceState);
         mPresenter.attachView(this);
         mUnbinder = ButterKnife.bind(this, view);
+        initProgressDialog(getContext());
+
         if (savedInstanceState == null) {
             if (!isHidden()) {
                 isInited = true;
@@ -71,6 +75,25 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
                 isInited = true;
                 initData();
             }
+        }
+    }
+
+    public void initProgressDialog(Context context) {
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("");
+        progressDialog.setMessage("加载中...");
+        progressDialog.setCanceledOnTouchOutside(false);
+    }
+
+    public void showProgress() {
+        if (progressDialog != null && !progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    public void stopProgress() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
         }
     }
 

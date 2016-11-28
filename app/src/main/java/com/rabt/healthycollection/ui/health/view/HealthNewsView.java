@@ -13,6 +13,5 @@ import java.util.List;
 
 public interface HealthNewsView extends BaseView {
     void showContent(List<HealthNewsPage.Page.Content> items);
-
     void showMoreContent(List<HealthNewsPage.Page.Content> items, boolean hasMore);
 }
