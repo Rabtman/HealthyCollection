@@ -83,13 +83,6 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
         mRecyclerView.setAdapter(healthNewsAdapter);
         showProgress();
         mPresenter.getHealthList(healthNewsId);
-        /*mSwipeLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeLayout.setRefreshing(true);
-                mPresenter.getHealthList(tid);
-            }
-        });*/
         KLog.d("getHealthList--->tid:" + healthNewsId + "|isInited:" + isInited);
     }
 

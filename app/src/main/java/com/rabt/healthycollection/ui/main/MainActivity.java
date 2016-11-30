@@ -5,9 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -15,6 +18,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
 import com.rabt.healthycollection.ui.health.HealthNewsMainFragment;
+import com.rabt.healthycollection.utils.ToastUtil;
 
 import butterknife.BindView;
 
@@ -38,6 +42,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     ActionBarDrawerToggle toggle;
     HealthNewsMainFragment healthNewsMainFragment;
+    MenuItem menuItem;
 
     private int hideFragment = R.id.nav_health;
     private int showFragment = R.id.nav_health;
@@ -74,6 +79,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_health:
+                        menuItem.setVisible(false);
+                        break;
+                    case R.id.nav_drug:
+                        menuItem.setVisible(true);
                         break;
                     case R.id.nav_setting:
                         break;
@@ -84,6 +93,27 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        menuItem = menu.findItem(R.id.search_view);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        searchView.setQueryHint("");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                ToastUtil.shortShow(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
     }
 
     @Override
