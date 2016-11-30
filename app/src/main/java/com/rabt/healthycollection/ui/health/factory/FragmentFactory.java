@@ -23,13 +23,13 @@ public class FragmentFactory {
 
     //健康资讯fragment
     public static SupportFragment createHealthNewsItemFragment(int pos) {
-        SupportFragment supportFragment = mCache.get(HealthConstants.TYPE.valueAt(pos));
+        SupportFragment supportFragment = mCache.get(HealthConstants.HEALTH_TYPE.valueAt(pos));
         if (supportFragment == null) {
             supportFragment = new HealthNewsItemFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt(HEALTHNEWS_ID, HealthConstants.TYPE.keyAt(pos));
+            bundle.putInt(HEALTHNEWS_ID, HealthConstants.HEALTH_TYPE.keyAt(pos));
             supportFragment.setArguments(bundle);
-            mCache.put(HealthConstants.TYPE.valueAt(pos), supportFragment);
+            mCache.put(HealthConstants.HEALTH_TYPE.valueAt(pos), supportFragment);
         }
         return supportFragment;
     }

@@ -10,6 +10,7 @@
         android:layout_margin="10dp">
 
         <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/drug_category"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             tools:text="123" />
@@ -51,6 +52,7 @@
                 android:visibility="invisible" />
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/drug_keyword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

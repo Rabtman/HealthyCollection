@@ -27,12 +27,12 @@ public class HealthNewsMainPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return HealthConstants.TYPE.size();
+        return HealthConstants.HEALTH_TYPE.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return HealthConstants.TYPE.valueAt(position);
+        return HealthConstants.HEALTH_TYPE.valueAt(position);
     }
 
     @Override
