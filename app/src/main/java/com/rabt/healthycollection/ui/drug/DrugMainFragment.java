@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.SimpleFragment;
+import com.rabt.healthycollection.ui.drug.adpater.DrugTypeAdapter;
 
 import butterknife.BindView;
 
@@ -37,6 +38,7 @@ public class DrugMainFragment extends SimpleFragment {
 
     @Override
     protected void initData() {
-
+        DrugTypeAdapter drugTypeAdapter = new DrugTypeAdapter(getContext());
+        drugCategory.setAdapter(drugTypeAdapter);
     }
 }
