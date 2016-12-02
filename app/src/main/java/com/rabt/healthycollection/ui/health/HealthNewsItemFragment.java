@@ -16,7 +16,6 @@ import com.rabt.healthycollection.ui.health.adapter.HealthNewsAdapter;
 import com.rabt.healthycollection.ui.health.presenter.HealthNewsItemPresenter;
 import com.rabt.healthycollection.ui.health.view.HealthNewsView;
 import com.rabt.healthycollection.utils.SnackbarUtil;
-import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +63,6 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
         healthNewsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                KLog.d("getMoreHealthList");
                 mPresenter.getMoreHealthList(healthNewsId);
             }
         });
@@ -73,7 +71,6 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                KLog.d("SimpleOnItemChildClick");
                 HealthNewsPage.Page.Content item = (HealthNewsPage.Page.Content) baseQuickAdapter.getItem(i);
                 Intent intent = new Intent(getActivity(), HealthNewsDetailActivity.class);
                 intent.putExtra(HealthConstants.HEALTHNEWS_ID, item.getId());
@@ -83,17 +80,22 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
         mRecyclerView.setAdapter(healthNewsAdapter);
         showProgress();
         mPresenter.getHealthList(healthNewsId);
-        KLog.d("getHealthList--->tid:" + healthNewsId + "|isInited:" + isInited);
     }
 
     @Override
     public void showError(String msg) {
+        if (mSwipeLayout != null && mSwipeLayout.isRefreshing()) {
+            mSwipeLayout.setRefreshing(false);
+        }
         stopProgress();
         SnackbarUtil.showShort(mRecyclerView, msg);
     }
 
     @Override
     public void showContent(List<HealthNewsPage.Page.Content> items) {
+        if (mSwipeLayout != null && mSwipeLayout.isRefreshing()) {
+            mSwipeLayout.setRefreshing(false);
+        }
         stopProgress();
         healthNewsAdapter.setNewData(items);
     }

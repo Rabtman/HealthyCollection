@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import com.orhanobut.logger.Logger;
 import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.utils.ToastUtil;
-import com.socks.library.KLog;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -35,9 +35,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         System.out.println(ex.toString());
-        KLog.e(TAG, ex.toString());
-        KLog.e(TAG, collectCrashDeviceInfo());
-        KLog.e(TAG, getCrashInfo(ex));
+        Logger.e(ex.toString());
+        Logger.e(TAG, collectCrashDeviceInfo());
+        Logger.e(TAG, getCrashInfo(ex));
         // 调用系统错误机制
         defaultHandler.uncaughtException(thread, ex);
         ToastUtil.shortShow("抱歉,程序发生异常即将退出");

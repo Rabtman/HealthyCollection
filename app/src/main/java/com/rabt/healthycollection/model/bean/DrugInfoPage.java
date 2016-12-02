@@ -1,5 +1,8 @@
 package com.rabt.healthycollection.model.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -59,7 +62,18 @@ public class DrugInfoPage {
         this.drugList = drugList;
     }
 
-    public static class DrugInfo {
+    public static class DrugInfo implements Parcelable {
+        public static final Creator<DrugInfo> CREATOR = new Creator<DrugInfo>() {
+            @Override
+            public DrugInfo createFromParcel(Parcel source) {
+                return new DrugInfo(source);
+            }
+
+            @Override
+            public DrugInfo[] newArray(int size) {
+                return new DrugInfo[size];
+            }
+        };
         private String zysx;
         private String blfy;
         private String zc;
@@ -80,6 +94,32 @@ public class DrugInfoPage {
         private String zycf;
         private String syz;
         private String ywxhzy;
+
+        public DrugInfo() {
+        }
+
+        protected DrugInfo(Parcel in) {
+            this.zysx = in.readString();
+            this.blfy = in.readString();
+            this.zc = in.readString();
+            this.drugName = in.readString();
+            this.pzwh = in.readString();
+            this.yfyl = in.readString();
+            this.img = in.readString();
+            this.type = in.readString();
+            this.xz = in.readString();
+            this.zzjb = in.readString();
+            this.jj = in.readString();
+            this.id = in.readString();
+            this.price = in.readString();
+            this.manu = in.readString();
+            this.zxbz = in.readString();
+            this.yxq = in.readString();
+            this.ggxh = in.readString();
+            this.zycf = in.readString();
+            this.syz = in.readString();
+            this.ywxhzy = in.readString();
+        }
 
         public String getZysx() {
             return zysx;
@@ -239,6 +279,35 @@ public class DrugInfoPage {
 
         public void setYwxhzy(String ywxhzy) {
             this.ywxhzy = ywxhzy;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.zysx);
+            dest.writeString(this.blfy);
+            dest.writeString(this.zc);
+            dest.writeString(this.drugName);
+            dest.writeString(this.pzwh);
+            dest.writeString(this.yfyl);
+            dest.writeString(this.img);
+            dest.writeString(this.type);
+            dest.writeString(this.xz);
+            dest.writeString(this.zzjb);
+            dest.writeString(this.jj);
+            dest.writeString(this.id);
+            dest.writeString(this.price);
+            dest.writeString(this.manu);
+            dest.writeString(this.zxbz);
+            dest.writeString(this.yxq);
+            dest.writeString(this.ggxh);
+            dest.writeString(this.zycf);
+            dest.writeString(this.syz);
+            dest.writeString(this.ywxhzy);
         }
     }
 }

@@ -28,6 +28,12 @@
         <activity
             android:name=".ui.health.HealthNewsDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.drug.DrugSearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.drug.DrugInfoDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

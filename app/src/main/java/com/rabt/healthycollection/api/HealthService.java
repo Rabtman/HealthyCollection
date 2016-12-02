@@ -2,6 +2,7 @@ package com.rabt.healthycollection.api;
 
 import com.rabt.healthycollection.BuildConfig;
 import com.rabt.healthycollection.base.http.RetrofitManager;
+import com.rabt.healthycollection.model.bean.DrugInfoPage;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
 import com.rabt.healthycollection.model.http.ShowApiResponse;
@@ -23,10 +24,14 @@ public class HealthService {
     }
 
     public Observable<ShowApiResponse<HealthNewsPage>> getHealthListInfo(int tid, String keyword, int page) {
-        return healthService.getHealthList(BuildConfig.APP_ID, BuildConfig.API_SIGN, 1, tid, keyword, page);
+        return healthService.getHealthList(BuildConfig.APP_ID, BuildConfig.API_SIGN, tid, keyword, page);
     }
 
     public Observable<ShowApiResponse<HealthNewsDetail>> getHealthDetail(String id) {
-        return healthService.getHealthDetail(BuildConfig.APP_ID, BuildConfig.API_SIGN, 1, id);
+        return healthService.getHealthDetail(BuildConfig.APP_ID, BuildConfig.API_SIGN, id);
+    }
+
+    public Observable<ShowApiResponse<DrugInfoPage>> getDrugListInfo(String keyword, String type, String manu, int page) {
+        return healthService.getDrugList(BuildConfig.APP_ID, BuildConfig.API_SIGN, keyword, type, manu, page);
     }
 }

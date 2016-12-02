@@ -5,22 +5,20 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.jaeger.library.StatusBarUtil;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
+import com.rabt.healthycollection.ui.drug.DrugMainFragment;
 import com.rabt.healthycollection.ui.health.HealthNewsMainFragment;
-import com.rabt.healthycollection.utils.ToastUtil;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * author: Rabtman
@@ -42,7 +40,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     ActionBarDrawerToggle toggle;
     HealthNewsMainFragment healthNewsMainFragment;
-    MenuItem menuItem;
+    DrugMainFragment drugMainFragment;
 
     private int hideFragment = R.id.nav_health;
     private int showFragment = R.id.nav_health;
@@ -72,48 +70,43 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         toggle.syncState();
         //fragment
         healthNewsMainFragment = new HealthNewsMainFragment();
-        loadMultipleRootFragment(R.id.main_content, 0, healthNewsMainFragment);
+        drugMainFragment = new DrugMainFragment();
+        loadMultipleRootFragment(R.id.main_content, 0, healthNewsMainFragment, drugMainFragment);
+        navigationView.getMenu().findItem(R.id.nav_health).setChecked(true);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_health:
-                        menuItem.setVisible(false);
+                        showFragment = R.id.nav_health;
                         break;
                     case R.id.nav_drug:
-                        menuItem.setVisible(true);
+                        showFragment = R.id.nav_drug;
                         break;
                     case R.id.nav_setting:
+                        showFragment = R.id.nav_setting;
                         break;
                 }
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
+                showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
+                mToolBar.setTitle(item.getTitle());
+                hideFragment = showFragment;
+                drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        menuItem = menu.findItem(R.id.search_view);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-        searchView.setQueryHint("");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                ToastUtil.shortShow(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-        return true;
+    private SupportFragment getTargetFragment(int tag) {
+        switch (tag) {
+            case R.id.nav_health:
+                return healthNewsMainFragment;
+            case R.id.nav_drug:
+                return drugMainFragment;
+            case R.id.nav_setting:
+                return healthNewsMainFragment;
+        }
+        return healthNewsMainFragment;
     }
 
     @Override

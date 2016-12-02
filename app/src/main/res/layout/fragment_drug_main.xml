@@ -13,6 +13,9 @@
             android:id="@+id/drug_category"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:spinnerMode="dialog"
             tools:text="123" />
     </android.support.v7.widget.CardView>
 
@@ -58,6 +61,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toLeftOf="@id/drug_close"
+                android:background="@null"
                 android:maxLines="1"
                 android:textColor="@color/body_text"
                 android:textSize="@dimen/body"

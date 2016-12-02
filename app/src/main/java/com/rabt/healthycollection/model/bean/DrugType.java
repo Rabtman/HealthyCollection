@@ -10,6 +10,11 @@ public class DrugType {
     private String id;
     private String type;
 
+    public DrugType(String id, String type) {
+        this.id = id;
+        this.type = type;
+    }
+
     public String getId() {
         return id;
     }
