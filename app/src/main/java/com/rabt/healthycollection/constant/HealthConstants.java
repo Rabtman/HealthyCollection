@@ -18,11 +18,11 @@ public class HealthConstants {
     //intent constants
     public static final String HEALTHNEWS_ID = "healthnews_id";
     public static final String DRUG_KEYWORD = "drug_keyword";
-    public static final String DRUG_TYPE_ID = "drug_type_id";
+    public static final String DRUG_TYPE = "drug_type";
     public static final String DRUG_INFO = "drug_info";
 
     public static SparseArray<String> HEALTH_TYPE;
-    public static List<DrugType> DRUG_TYPE;
+    public static List<DrugType> DRUG_TYPE_LIST;
     static {
         //健康资讯类别
         HEALTH_TYPE = new SparseArray<>();
@@ -34,7 +34,7 @@ public class HealthConstants {
         HEALTH_TYPE.put(6, "社会热点");*/
 
         //药品类别
-        DRUG_TYPE = new Gson().fromJson("[\n" +
+        DRUG_TYPE_LIST = new Gson().fromJson("[\n" +
                         "{\n" +
                         "\"id\": \"55c761e35d84145c548a9a76\",\n" +
                         "\"type\": \"感冒发热\"\n" +
@@ -170,6 +170,6 @@ public class HealthConstants {
                         "]",
                 new TypeToken<List<DrugType>>() {
                 }.getType());
-        DRUG_TYPE.add(0, new DrugType("", "全部药品类型"));
+        DRUG_TYPE_LIST.add(0, new DrugType("", "全部药品类型"));
     }
 }

@@ -27,12 +27,12 @@ public class DrugTypeAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return HealthConstants.DRUG_TYPE.size();
+        return HealthConstants.DRUG_TYPE_LIST.size();
     }
 
     @Override
     public DrugType getItem(int position) {
-        return HealthConstants.DRUG_TYPE.get(position);
+        return HealthConstants.DRUG_TYPE_LIST.get(position);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DrugTypeAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.drug_type_item, null);
         }
         TextView textView = (TextView) convertView.findViewById(R.id.drug_type);
-        textView.setText(HealthConstants.DRUG_TYPE.get(position).getType());
+        textView.setText(HealthConstants.DRUG_TYPE_LIST.get(position).getType());
         return convertView;
     }
 }

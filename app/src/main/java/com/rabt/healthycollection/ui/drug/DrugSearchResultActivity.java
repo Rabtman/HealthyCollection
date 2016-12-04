@@ -38,7 +38,7 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
     RecyclerView mRecyclerView;
 
     private String drugKeyWord;
-    private String drugTypeId;
+    private String drugType;
     private DrugSearchResultAdapter drugSearchResultAdapter;
 
     @Override
@@ -56,12 +56,12 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
         setToolBar(mToolBar, getString(R.string.title_search_result));
         //获取传递的参数
         drugKeyWord = getIntent().getStringExtra(HealthConstants.DRUG_KEYWORD);
-        drugTypeId = getIntent().getStringExtra(HealthConstants.DRUG_TYPE_ID);
+        drugType = getIntent().getStringExtra(HealthConstants.DRUG_TYPE);
 
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getDrugList(drugKeyWord, drugTypeId, "");
+                mPresenter.getDrugList(drugKeyWord, drugType, "");
             }
         });
 
@@ -71,7 +71,7 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
         drugSearchResultAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mPresenter.getMoreDrugList(drugKeyWord, drugTypeId, "");
+                mPresenter.getMoreDrugList(drugKeyWord, drugType, "");
             }
         });
 
@@ -87,7 +87,7 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
         });
         mRecyclerView.setAdapter(drugSearchResultAdapter);
         showProgress();
-        mPresenter.getDrugList(drugKeyWord, drugTypeId, "");
+        mPresenter.getDrugList(drugKeyWord, drugType, "");
     }
 
     @Override

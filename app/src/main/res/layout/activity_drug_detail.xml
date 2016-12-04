@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -38,21 +37,85 @@
             android:layout_height="100dp"
             android:layout_margin="20dp"
             android:src="@mipmap/ic_launcher"
+            android:visibility="gone"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|right|end" />
 
-        <android.support.v7.widget.LinearLayoutCompat
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:id="@+id/drug_detail_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/body"
-                tools:text="【药品名称】：" />
-        </android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/drug_ggxh"
+                    style="@style/drug_detail_tv" />
+
+                <TextView
+                    android:id="@+id/drug_pzwh"
+                    style="@style/drug_detail_tv"
+                    android:background="@color/drug_tv_bg" />
+
+                <TextView
+                    android:id="@+id/drug_yxq"
+                    style="@style/drug_detail_tv" />
+
+                <TextView
+                    android:id="@+id/drug_zycf"
+                    style="@style/drug_detail_tv"
+                    android:background="@color/drug_tv_bg" />
+
+                <TextView
+                    android:id="@+id/drug_xz"
+                    style="@style/drug_detail_tv" />
+
+                <TextView
+                    android:id="@+id/drug_zzjb"
+                    style="@style/drug_detail_tv"
+                    android:background="@color/drug_tv_bg" />
+
+                <TextView
+                    android:id="@+id/drug_syz"
+                    style="@style/drug_detail_tv" />
+
+
+                <TextView
+                    android:id="@+id/drug_yfyl"
+                    style="@style/drug_detail_tv"
+                    android:background="@color/drug_tv_bg" />
+
+                <TextView
+                    android:id="@+id/drug_manu"
+                    style="@style/drug_detail_tv" />
+
+                <TextView
+                    android:id="@+id/drug_blfy"
+                    style="@style/drug_detail_tv"
+                    android:background="@color/drug_tv_bg" />
+
+                <TextView
+                    android:id="@+id/drug_jj"
+                    style="@style/drug_detail_tv" />
+
+                <TextView
+                    android:id="@+id/drug_zysx"
+                    style="@style/drug_detail_tv"
+                    android:background="@color/drug_tv_bg" />
+
+                <TextView
+                    android:id="@+id/drug_ywxhzy"
+                    style="@style/drug_detail_tv" />
+
+                <TextView
+                    android:id="@+id/drug_zc"
+                    style="@style/drug_detail_tv"
+                    android:background="@color/drug_tv_bg" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

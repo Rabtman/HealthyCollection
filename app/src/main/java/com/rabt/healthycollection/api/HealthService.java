@@ -32,6 +32,6 @@ public class HealthService {
     }
 
     public Observable<ShowApiResponse<DrugInfoPage>> getDrugListInfo(String keyword, String type, String manu, int page) {
-        return healthService.getDrugList(BuildConfig.APP_ID, BuildConfig.API_SIGN, keyword, type, manu, page);
+        return healthService.getDrugList(BuildConfig.APP_ID, BuildConfig.API_SIGN, keyword, manu, type, page);
     }
 }

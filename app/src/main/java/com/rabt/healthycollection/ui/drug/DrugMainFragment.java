@@ -56,7 +56,11 @@ public class DrugMainFragment extends SimpleFragment {
         drugCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                drugType = ((DrugType) parent.getItemAtPosition(position)).getId();
+                if (position == 0) {
+                    drugType = "";
+                } else {
+                    drugType = ((DrugType) parent.getItemAtPosition(position)).getType();
+                }
             }
 
             @Override
@@ -98,7 +102,7 @@ public class DrugMainFragment extends SimpleFragment {
         KeyboardUtils.hideSoftInput(getActivity());
         Intent intent = new Intent(getContext(), DrugSearchResultActivity.class);
         intent.putExtra(HealthConstants.DRUG_KEYWORD, drugKeyword.getText().toString());
-        intent.putExtra(HealthConstants.DRUG_TYPE_ID, drugType);
+        intent.putExtra(HealthConstants.DRUG_TYPE, drugType);
         startActivity(intent);
     }
 

@@ -12,7 +12,21 @@
     <string name="nav_setting">设置</string>
 
     <string name="format_drug_type">（ %s ）</string>
-    <string name="format_detail_drug_name">【药品名称】：%s</string>
+    //药品详情
+    <string name="format_drug_ggxh">【规格】：\n &#160;&#160;%s</string>
+    <string name="format_drug_pzwh">【批准文号】：\n &#160;&#160;%s</string>
+    <string name="format_drug_zycf">【主要成分】：\n &#160;&#160;%s</string>
+    <string name="format_drug_xz">【性状】：\n &#160;&#160;%s</string>
+    <string name="format_drug_zzjb">【主治疾病】：\n &#160;&#160;%s</string>
+    <string name="format_drug_syz">【适用症状】：\n &#160;&#160;%s</string>
+    <string name="format_drug_yfyl">【用法用量】：\n &#160;&#160;%s</string>
+    <string name="format_drug_manu">【生产企业】：\n &#160;&#160;%s</string>
+    <string name="format_drug_blfy">【不良反应】：\n &#160;&#160;%s</string>
+    <string name="format_drug_jj">【禁忌】：\n &#160;&#160;%s</string>
+    <string name="format_drug_zysx">【注意事项】：\n &#160;&#160;%s</string>
+    <string name="format_drug_ywxhzy">【药物相互作用】：\n &#160;&#160;%s</string>
+    <string name="format_drug_zc">【贮藏】：\n &#160;&#160;%s</string>
+    <string name="format_drug_yxq">【有效期】：\n &#160;&#160;%s</string>
 
     <string name="title_search_result">搜索结果</string>
 

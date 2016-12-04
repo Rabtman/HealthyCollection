@@ -26,12 +26,38 @@ import butterknife.BindView;
 
 public class DrugInfoDetailActivity extends SimpleActivity {
 
-    @BindView(R.id.drug_detail_name)
-    TextView drugDetailName;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.drug_detail_img)
     ImageView drugDetailImg;
+    @BindView(R.id.drug_ggxh)
+    TextView drugGgxh;
+    @BindView(R.id.drug_pzwh)
+    TextView drugPzwh;
+    @BindView(R.id.drug_zycf)
+    TextView drugZycf;
+    @BindView(R.id.drug_xz)
+    TextView drugXz;
+    @BindView(R.id.drug_zzjb)
+    TextView drugZzjb;
+    @BindView(R.id.drug_syz)
+    TextView drugSyz;
+    @BindView(R.id.drug_yfyl)
+    TextView drugYfyl;
+    @BindView(R.id.drug_manu)
+    TextView drugManu;
+    @BindView(R.id.drug_blfy)
+    TextView drugBlfy;
+    @BindView(R.id.drug_jj)
+    TextView drugJj;
+    @BindView(R.id.drug_zysx)
+    TextView drugZysx;
+    @BindView(R.id.drug_ywxhzy)
+    TextView drugYwxhzy;
+    @BindView(R.id.drug_zc)
+    TextView drugZc;
+    @BindView(R.id.drug_yxq)
+    TextView drugYxq;
 
     private DrugInfoPage.DrugInfo drugInfo;
 
@@ -48,8 +74,25 @@ public class DrugInfoDetailActivity extends SimpleActivity {
             return;
         }
         setToolBar(toolbar, drugInfo.getDrugName());
-        drugDetailName.setText(String.format(getString(R.string.format_detail_drug_name), drugInfo.getDrugName()));
         showDrugPicture();
+        drugGgxh.setText(String.format(getString(R.string.format_drug_ggxh), checkText(drugInfo.getGgxh())));
+        drugPzwh.setText(String.format(getString(R.string.format_drug_pzwh), checkText(drugInfo.getPzwh())));
+        drugZycf.setText(String.format(getString(R.string.format_drug_zycf), checkText(drugInfo.getZycf())));
+        drugXz.setText(String.format(getString(R.string.format_drug_xz), checkText(drugInfo.getXz())));
+        drugZzjb.setText(String.format(getString(R.string.format_drug_zzjb), checkText(drugInfo.getZzjb())));
+        drugSyz.setText(String.format(getString(R.string.format_drug_syz), checkText(drugInfo.getSyz())));
+        drugYfyl.setText(String.format(getString(R.string.format_drug_yfyl), checkText(drugInfo.getYfyl())));
+        drugManu.setText(String.format(getString(R.string.format_drug_manu), checkText(drugInfo.getManu())));
+        drugBlfy.setText(String.format(getString(R.string.format_drug_blfy), checkText(drugInfo.getBlfy())));
+        drugJj.setText(String.format(getString(R.string.format_drug_jj), checkText(drugInfo.getJj())));
+        drugZysx.setText(String.format(getString(R.string.format_drug_zysx), checkText(drugInfo.getZysx())));
+        drugYwxhzy.setText(String.format(getString(R.string.format_drug_ywxhzy), checkText(drugInfo.getYwxhzy())));
+        drugZc.setText(String.format(getString(R.string.format_drug_zc), checkText(drugInfo.getZc())));
+        drugYxq.setText(String.format(getString(R.string.format_drug_yxq), checkText(drugInfo.getYxq())));
+    }
+
+    private String checkText(String text) {
+        return text.equals("") ? "尚不明确。" : text;
     }
 
     private void showDrugPicture() {
