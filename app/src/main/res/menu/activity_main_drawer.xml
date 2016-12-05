@@ -6,6 +6,12 @@
             android:id="@+id/nav_health"
             android:icon="@drawable/nav_healthnews"
             android:title="@string/nav_health" />
+
+        <item
+            android:id="@+id/nav_hospital"
+            android:icon="@drawable/nav_hospital"
+            android:title="@string/nav_hospital" />
+
         <item
             android:id="@+id/nav_drug"
             android:icon="@drawable/nav_drugsearch"

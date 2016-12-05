@@ -7,12 +7,14 @@
     <color name="colorCard">#FFFFFF</color>
     <color name="colorText">#2C2C2C</color>
     <color name="colorLogo">#FED530</color>
-    <!-- 浅灰 -->
-    <color name="light_grey">#cccccc</color>
+
+    <color name="light_gray">#cccccc</color>
+    <color name="whitesmoke">#eeeeee</color>
 
     <color name="divider">#d5d5d5</color>
     <color name="mask_color">#88888888</color>
 
+    <color name="indexlayout_bg">#08000000</color>
     <color name="drug_tv_bg">#f4f4f4</color>
     <color name="item_title">#000000</color>
     <color name="body_text">#000000</color>

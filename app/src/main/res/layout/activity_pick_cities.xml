@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <me.yokeyword.indexablerv.IndexableLayout
+        android:id="@+id/index_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:indexBar_background="@color/indexlayout_bg"
+        app:indexBar_layout_width="24dp"
+        app:indexBar_selectedTextColor="@color/colorAccent"
+        app:indexBar_textColor="@color/colorPrimary"
+        app:indexBar_textSize="14sp"
+        app:indexBar_textSpace="6dp" />
+</LinearLayout>

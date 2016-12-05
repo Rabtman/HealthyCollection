@@ -11,7 +11,7 @@
     <dimen name="menu">16sp</dimen>
     <dimen name="button">14sp</dimen> <!--给（图片、照片等）加说明文字-->
     <dimen name="caption">12sp</dimen>
-    <dimen name="body">18sp</dimen>
+    <dimen name="body">16sp</dimen>
     <dimen name="subheading">14sp</dimen> <!--副标题-->
     <dimen name="title">20sp</dimen>
     <dimen name="headline">24sp</dimen>

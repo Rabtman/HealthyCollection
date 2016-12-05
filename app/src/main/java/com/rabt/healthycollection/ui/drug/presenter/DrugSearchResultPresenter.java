@@ -57,8 +57,7 @@ public class DrugSearchResultPresenter extends RxPresenter<DrugSearchResultView>
 
     //查询更多药品
     public void getMoreDrugList(String keyword, String type, String manu) {
-        currentPage = 1;
-        Subscription subscription = healthService.getDrugListInfo(keyword, type, manu, currentPage)
+        Subscription subscription = healthService.getDrugListInfo(keyword, type, manu, ++currentPage)
                 .compose(RxUtil.<ShowApiResponse<DrugInfoPage>>rxSchedulerHelper())
                 .compose(RxUtil.<DrugInfoPage>handleShowApiResult())
                 .subscribe(new Action1<DrugInfoPage>() {
@@ -70,6 +69,7 @@ public class DrugSearchResultPresenter extends RxPresenter<DrugSearchResultView>
                         new Action1<Throwable>() {
                             @Override
                             public void call(Throwable throwable) {
+                                --currentPage;
                                 mView.showError(App.getInstance().getString(R.string.msg_load_err));
                             }
                         });

@@ -5,6 +5,7 @@ import com.rabt.healthycollection.base.http.RetrofitManager;
 import com.rabt.healthycollection.model.bean.DrugInfoPage;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
+import com.rabt.healthycollection.model.bean.HospitalPage;
 import com.rabt.healthycollection.model.http.ShowApiResponse;
 
 import rx.Observable;
@@ -33,5 +34,9 @@ public class HealthService {
 
     public Observable<ShowApiResponse<DrugInfoPage>> getDrugListInfo(String keyword, String type, String manu, int page) {
         return healthService.getDrugList(BuildConfig.APP_ID, BuildConfig.API_SIGN, keyword, manu, type, page);
+    }
+
+    public Observable<ShowApiResponse<HospitalPage>> getHospitalList(int page, String keyword, String provinceName, String cityName) {
+        return healthService.getHospitalList(BuildConfig.APP_ID, BuildConfig.API_SIGN, page, keyword, provinceName, cityName);
     }
 }

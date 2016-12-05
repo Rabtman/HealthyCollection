@@ -20,6 +20,10 @@ public class HealthConstants {
     public static final String DRUG_KEYWORD = "drug_keyword";
     public static final String DRUG_TYPE = "drug_type";
     public static final String DRUG_INFO = "drug_info";
+    public static final String HOSPITAL_CITY = "hospital_city";
+
+    //request code
+    public static final int CODE_SELECT_CITY = 1001;
 
     public static SparseArray<String> HEALTH_TYPE;
     public static List<DrugType> DRUG_TYPE_LIST;

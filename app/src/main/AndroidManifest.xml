@@ -34,6 +34,9 @@
         <activity
             android:name=".ui.drug.DrugInfoDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.hospital.PickCityActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

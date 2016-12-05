@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/hospital_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:maxLength="5"
+                android:text="请选择"
+                android:textColor="@color/body_text"
+                android:textSize="@dimen/body"
+                tools:text="深圳市..." />
+
+            <ImageView
+                android:id="@+id/hospital_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/hospital_city"
+                android:src="@drawable/ic_arrow_down_black" />
+
+            <ImageView
+                android:id="@+id/hospital_line_left"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:layout_margin="6dp"
+                android:layout_toRightOf="@id/hospital_arrow"
+                android:background="@color/light_gray" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/hospital_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/ic_search" />
+
+            <ImageView
+                android:id="@+id/hospital_line_right"
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:layout_margin="6dp"
+                android:layout_toLeftOf="@id/hospital_search"
+                android:background="@color/light_gray" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/hospital_close"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/hospital_line_right"
+                android:background="@drawable/ic_close"
+                android:visibility="invisible" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/hospital_keyword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/hospital_close"
+                android:layout_toRightOf="@+id/hospital_line_left"
+                android:background="@null"
+                android:maxLines="1"
+                android:textColor="@color/body_text"
+                android:textSize="@dimen/body"
+                tools:text="123123111111111111111111" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/title_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text=" ~ · 搜索结果 · ~ " />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

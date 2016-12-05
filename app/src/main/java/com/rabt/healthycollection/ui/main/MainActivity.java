@@ -16,6 +16,7 @@ import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
 import com.rabt.healthycollection.ui.drug.DrugMainFragment;
 import com.rabt.healthycollection.ui.health.HealthNewsMainFragment;
+import com.rabt.healthycollection.ui.hospital.HospitalMainFragment;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     ActionBarDrawerToggle toggle;
     HealthNewsMainFragment healthNewsMainFragment;
+    HospitalMainFragment hospitalMainFragment;
     DrugMainFragment drugMainFragment;
 
     private int hideFragment = R.id.nav_health;
@@ -70,8 +72,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         toggle.syncState();
         //fragment
         healthNewsMainFragment = new HealthNewsMainFragment();
+        hospitalMainFragment = new HospitalMainFragment();
         drugMainFragment = new DrugMainFragment();
-        loadMultipleRootFragment(R.id.main_content, 0, healthNewsMainFragment, drugMainFragment);
+        loadMultipleRootFragment(R.id.main_content, 0, healthNewsMainFragment, hospitalMainFragment, drugMainFragment);
         navigationView.getMenu().findItem(R.id.nav_health).setChecked(true);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -80,6 +83,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 switch (item.getItemId()) {
                     case R.id.nav_health:
                         showFragment = R.id.nav_health;
+                        break;
+                    case R.id.nav_hospital:
+                        showFragment = R.id.nav_hospital;
                         break;
                     case R.id.nav_drug:
                         showFragment = R.id.nav_drug;
@@ -101,6 +107,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         switch (tag) {
             case R.id.nav_health:
                 return healthNewsMainFragment;
+            case R.id.nav_hospital:
+                return hospitalMainFragment;
             case R.id.nav_drug:
                 return drugMainFragment;
             case R.id.nav_setting:

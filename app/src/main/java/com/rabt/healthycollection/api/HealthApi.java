@@ -3,6 +3,7 @@ package com.rabt.healthycollection.api;
 import com.rabt.healthycollection.model.bean.DrugInfoPage;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
+import com.rabt.healthycollection.model.bean.HospitalPage;
 import com.rabt.healthycollection.model.http.ShowApiResponse;
 
 import retrofit2.http.GET;
@@ -25,4 +26,7 @@ public interface HealthApi {
 
     @GET("93-97")
     Observable<ShowApiResponse<DrugInfoPage>> getDrugList(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("keyword") String keyword, @Query("manu") String manu, @Query("type") String type, @Query("page") int page);
+
+    @GET("87-60")
+    Observable<ShowApiResponse<HospitalPage>> getHospitalList(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("page") int page, @Query("hosName") String keyword, @Query("provinceName") String provinceName, @Query("cityName") String cityName);
 }

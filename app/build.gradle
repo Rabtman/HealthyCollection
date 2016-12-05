@@ -40,6 +40,7 @@ dependencies {
     compile rootProject.ext.dependencies["fragmentation"]
     compile rootProject.ext.dependencies["base-recyclerview-hepler"]
     compile 'com.jaeger.statusbaruitl:library:1.3.0'  //浸入式状态栏
+    compile 'me.yokeyword:indexablerecyclerview:1.0.5' //分组列表
     //rx
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]

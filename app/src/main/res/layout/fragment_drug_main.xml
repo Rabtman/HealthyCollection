@@ -43,7 +43,7 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:layout_toLeftOf="@id/drug_search"
-                android:background="@color/light_grey" />
+                android:background="@color/light_gray" />
 
             <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/drug_close"
