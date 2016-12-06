@@ -11,148 +11,125 @@ import java.util.List;
  */
 
 public class HealthNewsPage {
-    @SerializedName("ret_code")
-    private int code;
-    @SerializedName("pagebean")
-    private Page page;
+    private boolean status;
+    private int total;
+    @SerializedName("tngou")
+    private List<HealthNews> healthNewsList;
 
-    public int getCode() {
-        return code;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
-    public Page getPage() {
-        return page;
+    public int getTotal() {
+        return total;
     }
 
-    public void setPage(Page page) {
-        this.page = page;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
-    public static class Page {
-        private int allPages;
-        private int currentPage;
-        private int allNum;
-        private int maxResult;
-        private List<Content> contentlist;
+    public List<HealthNews> getHealthNewsList() {
+        return healthNewsList;
+    }
 
-        public int getAllPages() {
-            return allPages;
+    public void setHealthNewsList(List<HealthNews> healthNewsList) {
+        this.healthNewsList = healthNewsList;
+    }
+
+    public static class HealthNews {
+        private int count;
+        private String description;
+        private int fcount;
+        private int id;
+        private String img;
+        private int infoclass;
+        private String keywords;
+        private int rcount;
+        private long time;
+        private String title;
+
+        public int getCount() {
+            return count;
         }
 
-        public void setAllPages(int allPages) {
-            this.allPages = allPages;
+        public void setCount(int count) {
+            this.count = count;
         }
 
-        public int getCurrentPage() {
-            return currentPage;
+        public String getDescription() {
+            return description;
         }
 
-        public void setCurrentPage(int currentPage) {
-            this.currentPage = currentPage;
+        public void setDescription(String description) {
+            this.description = description;
         }
 
-        public int getAllNum() {
-            return allNum;
+        public int getFcount() {
+            return fcount;
         }
 
-        public void setAllNum(int allNum) {
-            this.allNum = allNum;
+        public void setFcount(int fcount) {
+            this.fcount = fcount;
         }
 
-        public int getMaxResult() {
-            return maxResult;
+        public int getId() {
+            return id;
         }
 
-        public void setMaxResult(int maxResult) {
-            this.maxResult = maxResult;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public List<Content> getContentlist() {
-            return contentlist;
+        public String getImg() {
+            return img;
         }
 
-        public void setContentlist(List<Content> contentlist) {
-            this.contentlist = contentlist;
+        public void setImg(String img) {
+            this.img = img;
         }
 
-        public static class Content {
-            /**
-             * id : 044629
-             * author : 科教网
-             * title : 世界肝炎日：预防肝炎，立即行动
-             * time : 2015-07-28 17:05:24
-             * tname : 疾病资讯
-             * img : http://img1.gtimg.com/health/pics/hv1/37/205/1889/122884537.jpg
-             * tid : 2
-             */
+        public int getInfoclass() {
+            return infoclass;
+        }
 
-            private String id;
-            private String author;
-            private String title;
-            private String time;
-            private String tname;
-            private String img;
-            private String tid;
+        public void setInfoclass(int infoclass) {
+            this.infoclass = infoclass;
+        }
 
-            public String getId() {
-                return id;
-            }
+        public String getKeywords() {
+            return keywords;
+        }
 
-            public void setId(String id) {
-                this.id = id;
-            }
+        public void setKeywords(String keywords) {
+            this.keywords = keywords;
+        }
 
-            public String getAuthor() {
-                return author;
-            }
+        public int getRcount() {
+            return rcount;
+        }
 
-            public void setAuthor(String author) {
-                this.author = author;
-            }
+        public void setRcount(int rcount) {
+            this.rcount = rcount;
+        }
 
-            public String getTitle() {
-                return title;
-            }
+        public long getTime() {
+            return time;
+        }
 
-            public void setTitle(String title) {
-                this.title = title;
-            }
+        public void setTime(long time) {
+            this.time = time;
+        }
 
-            public String getTime() {
-                return time;
-            }
+        public String getTitle() {
+            return title;
+        }
 
-            public void setTime(String time) {
-                this.time = time;
-            }
-
-            public String getTname() {
-                return tname;
-            }
-
-            public void setTname(String tname) {
-                this.tname = tname;
-            }
-
-            public String getImg() {
-                return img;
-            }
-
-            public void setImg(String img) {
-                this.img = img;
-            }
-
-            public String getTid() {
-                return tid;
-            }
-
-            public void setTid(String tid) {
-                this.tid = tid;
-            }
+        public void setTitle(String title) {
+            this.title = title;
         }
     }
 }

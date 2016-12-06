@@ -37,6 +37,9 @@
         <activity
             android:name=".ui.hospital.PickCityActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.hospital.HospitalInfoDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

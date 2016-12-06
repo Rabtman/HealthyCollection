@@ -1,5 +1,6 @@
 package com.rabt.healthycollection.api;
 
+import com.rabt.healthycollection.model.bean.DrugInfoDetail;
 import com.rabt.healthycollection.model.bean.DrugInfoPage;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
@@ -18,14 +19,17 @@ import rx.Observable;
  */
 
 public interface HealthApi {
-    @GET("96-109")
-    Observable<ShowApiResponse<HealthNewsPage>> getHealthList(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("tid") int tid, @Query("keyword") String keyword, @Query("page") int page);
+    @GET("info/list")
+    Observable<HealthNewsPage> getHealthList(@Query("id") int id, @Query("page") int page);
 
-    @GET("96-36")
-    Observable<ShowApiResponse<HealthNewsDetail>> getHealthDetail(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("id") String id);
+    @GET("info/show")
+    Observable<HealthNewsDetail> getHealthDetail(@Query("id") int id);
 
-    @GET("93-97")
-    Observable<ShowApiResponse<DrugInfoPage>> getDrugList(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("keyword") String keyword, @Query("manu") String manu, @Query("type") String type, @Query("page") int page);
+    @GET("search")
+    Observable<DrugInfoPage> getDrugList(@Query("name") String name, @Query("type") String type, @Query("keyword") String keyword, @Query("page") int page);
+
+    @GET("drug/show")
+    Observable<DrugInfoDetail> getDrugDetail(@Query("id") int id);
 
     @GET("87-60")
     Observable<ShowApiResponse<HospitalPage>> getHospitalList(@Query("showapi_appid") String appId, @Query("showapi_sign") String apiSign, @Query("page") int page, @Query("hosName") String keyword, @Query("provinceName") String provinceName, @Query("cityName") String cityName);

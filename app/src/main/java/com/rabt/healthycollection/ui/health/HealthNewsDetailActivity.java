@@ -4,8 +4,6 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
@@ -16,6 +14,7 @@ import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.ui.health.presenter.HealthNewsDetailPresenter;
 import com.rabt.healthycollection.ui.health.view.HealthNewsDetailView;
 import com.rabt.healthycollection.utils.SnackbarUtil;
+import com.rabt.healthycollection.utils.TimeUtil;
 
 import butterknife.BindView;
 
@@ -32,12 +31,10 @@ public class HealthNewsDetailActivity extends BaseActivity<HealthNewsDetailPrese
     TextView detialTitle;
     @BindView(R.id.detial_date)
     TextView detialDate;
-    @BindView(R.id.detial_author)
-    TextView detialAuthor;
+    @BindView(R.id.detial_description)
+    TextView detialDescription;
     @BindView(R.id.detial_content)
     TextView detialContent;
-    @BindView(R.id.detial_decoration_line)
-    ImageView detialLine;
 
 
     @Override
@@ -55,7 +52,7 @@ public class HealthNewsDetailActivity extends BaseActivity<HealthNewsDetailPrese
         StatusBarUtil.setColor(mContext, ContextCompat.getColor(mContext, R.color.colorPrimary));
         setToolBar(mToolBar, "");
         showProgress();
-        mPresenter.getComicDetail(getIntent().getStringExtra(HealthConstants.HEALTHNEWS_ID));
+        mPresenter.getHealthNewsDetail(getIntent().getIntExtra(HealthConstants.HEALTHNEWS_ID, -1));
     }
 
     @Override
@@ -65,17 +62,16 @@ public class HealthNewsDetailActivity extends BaseActivity<HealthNewsDetailPrese
     }
 
     @Override
-    public void showComicDetail(HealthNewsDetail.Info healthNewsDetail) {
+    public void showHealthNewsDetail(HealthNewsDetail healthNewsDetail) {
         stopProgress();
-        detialDate.setText(healthNewsDetail.getTime());
-        detialAuthor.setText(healthNewsDetail.getAuthor());
-        detialLine.setVisibility(View.VISIBLE);
+        detialDate.setText(TimeUtil.millis2String(healthNewsDetail.getTime(), "yyyy-MM-dd"));
+        detialDescription.setText(healthNewsDetail.getDescription());
         if (Build.VERSION.SDK_INT >= 24) {
             detialTitle.setText(Html.fromHtml(healthNewsDetail.getTitle(), Html.FROM_HTML_MODE_COMPACT));
-            detialContent.setText(Html.fromHtml(healthNewsDetail.getContent(), Html.FROM_HTML_MODE_COMPACT));
+            detialContent.setText(Html.fromHtml(healthNewsDetail.getMessage(), Html.FROM_HTML_MODE_COMPACT));
         } else {
             detialTitle.setText(Html.fromHtml(healthNewsDetail.getTitle()));
-            detialContent.setText(Html.fromHtml(healthNewsDetail.getContent()));
+            detialContent.setText(Html.fromHtml(healthNewsDetail.getMessage()));
         }
     }
 }

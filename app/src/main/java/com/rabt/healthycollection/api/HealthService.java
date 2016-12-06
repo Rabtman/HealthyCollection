@@ -2,6 +2,7 @@ package com.rabt.healthycollection.api;
 
 import com.rabt.healthycollection.BuildConfig;
 import com.rabt.healthycollection.base.http.RetrofitManager;
+import com.rabt.healthycollection.model.bean.DrugInfoDetail;
 import com.rabt.healthycollection.model.bean.DrugInfoPage;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
@@ -24,16 +25,20 @@ public class HealthService {
         healthService = retrofitManager.getInstance().create(HealthApi.class);
     }
 
-    public Observable<ShowApiResponse<HealthNewsPage>> getHealthListInfo(int tid, String keyword, int page) {
-        return healthService.getHealthList(BuildConfig.APP_ID, BuildConfig.API_SIGN, tid, keyword, page);
+    public Observable<HealthNewsPage> getHealthListInfo(int id, int page) {
+        return healthService.getHealthList(id, page);
     }
 
-    public Observable<ShowApiResponse<HealthNewsDetail>> getHealthDetail(String id) {
-        return healthService.getHealthDetail(BuildConfig.APP_ID, BuildConfig.API_SIGN, id);
+    public Observable<HealthNewsDetail> getHealthDetail(int id) {
+        return healthService.getHealthDetail(id);
     }
 
-    public Observable<ShowApiResponse<DrugInfoPage>> getDrugListInfo(String keyword, String type, String manu, int page) {
-        return healthService.getDrugList(BuildConfig.APP_ID, BuildConfig.API_SIGN, keyword, manu, type, page);
+    public Observable<DrugInfoPage> getDrugListInfo(String keyword, int page) {
+        return healthService.getDrugList("drug", "name", keyword, page);
+    }
+
+    public Observable<DrugInfoDetail> getDrugInfoDetail(int id) {
+        return healthService.getDrugDetail(id);
     }
 
     public Observable<ShowApiResponse<HospitalPage>> getHospitalList(int page, String keyword, String provinceName, String cityName) {

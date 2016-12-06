@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -33,7 +32,7 @@
         </android.support.design.widget.AppBarLayout>
 
         <ImageView
-            android:id="@+id/drug_detail_img"
+            android:id="@+id/hospital_detail_img"
             android:layout_width="120dp"
             android:layout_height="100dp"
             android:layout_margin="20dp"
@@ -47,10 +46,6 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:id="@+id/drug_detail_msg"
-                style="@style/drug_detail_tv"
-                tools:text="\n【批准文号】\n 国药准字Z20050168 \n【药品类型】\n 化痰止咳 \n【中文名】\n 拜特制药 哮喘胶囊 \n【产品英文名】\n  \n【生产企业】\n 贵州拜特制药有限公司 \n【功能主治】\n 咳嗽、哮喘、气管炎、急慢性支气管炎、支气管哮喘、过敏性哮喘、肺气肿、多痰、尘肺、烟肺、矽肺、胸部憋闷刺痒、呼吸困难、声音嘶哑，尤其对咳嗽痰盛、哮喘不止、咽喉不利、夜卧不宁等疗效神奇。 \n【药品性状】\n 为胶囊剂，内容物为黄棕色的粉末；味甜、略苦。 \n【药品禁忌】\n 暂无相关信息 \n【药理作用】\n 暂无相关信息 \n【药物相互作用】\n 暂无相关信息 \n【不良反应】\n 暂无相关信息 \n【产品规格】\n 每粒装0.32g \n【包装规格】\n  \n【药品成分】\n 罂粟壳、麻黄、桔梗、甘草。 \n【孕妇用药】\n 暂无相关信息 \n【儿童用药】\n 暂无相关信息 \n【老年患者用药】\n 暂无相关信息 \n【用法用量】\n 一次1-2粒，一日3次。 \n【贮藏方法】\n 密封，置阴凉干燥处。 \n【注意事项】\n 暂无相关信息 — 该说明书仅作参考" />
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

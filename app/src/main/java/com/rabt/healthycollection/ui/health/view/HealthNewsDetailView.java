@@ -10,5 +10,5 @@ import com.rabt.healthycollection.model.bean.HealthNewsDetail;
  */
 
 public interface HealthNewsDetailView extends BaseView {
-    void showComicDetail(HealthNewsDetail.Info healthNewsDetail);
+    void showHealthNewsDetail(HealthNewsDetail healthNewsDetail);
 }

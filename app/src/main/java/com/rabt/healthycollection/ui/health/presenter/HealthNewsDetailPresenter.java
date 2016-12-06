@@ -5,7 +5,6 @@ import com.rabt.healthycollection.api.HealthService;
 import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.RxPresenter;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
-import com.rabt.healthycollection.model.http.ShowApiResponse;
 import com.rabt.healthycollection.ui.health.view.HealthNewsDetailView;
 import com.rabt.healthycollection.utils.RxUtil;
 
@@ -29,14 +28,17 @@ public class HealthNewsDetailPresenter extends RxPresenter<HealthNewsDetailView>
         this.healthService = healthService;
     }
 
-    public void getComicDetail(String id) {
+    public void getHealthNewsDetail(int id) {
+        if (id == -1) {
+            mView.showError(App.getInstance().getString(R.string.msg_load_err));
+            return;
+        }
         Subscription subscription = healthService.getHealthDetail(id)
-                .compose(RxUtil.<ShowApiResponse<HealthNewsDetail>>rxSchedulerHelper())
-                .compose(RxUtil.<HealthNewsDetail>handleShowApiResult())
+                .compose(RxUtil.<HealthNewsDetail>rxSchedulerHelper())
                 .subscribe(new Action1<HealthNewsDetail>() {
                     @Override
                     public void call(HealthNewsDetail healthNewsDetail) {
-                        mView.showComicDetail(healthNewsDetail.getInfo());
+                        mView.showHealthNewsDetail(healthNewsDetail);
                     }
                 }, new Action1<Throwable>() {
                     @Override

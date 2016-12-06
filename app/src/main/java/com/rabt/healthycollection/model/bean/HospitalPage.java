@@ -1,5 +1,8 @@
 package com.rabt.healthycollection.model.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -76,7 +79,18 @@ public class HospitalPage {
         this.hospitalList = hospitalList;
     }
 
-    public static class HospitalInfo {
+    public static class HospitalInfo implements Parcelable {
+        public static final Creator<HospitalInfo> CREATOR = new Creator<HospitalInfo>() {
+            @Override
+            public HospitalInfo createFromParcel(Parcel source) {
+                return new HospitalInfo(source);
+            }
+
+            @Override
+            public HospitalInfo[] newArray(int size) {
+                return new HospitalInfo[size];
+            }
+        };
         private String id;
         private String tsks;
         private String bus;
@@ -88,6 +102,23 @@ public class HospitalPage {
         private String hosName;
         private String info;
         private String img;
+
+        public HospitalInfo() {
+        }
+
+        protected HospitalInfo(Parcel in) {
+            this.id = in.readString();
+            this.tsks = in.readString();
+            this.bus = in.readString();
+            this.cityName = in.readString();
+            this.keshi = in.readString();
+            this.provinceName = in.readString();
+            this.addr = in.readString();
+            this.zzjb = in.readString();
+            this.hosName = in.readString();
+            this.info = in.readString();
+            this.img = in.readString();
+        }
 
         public String getId() {
             return id;
@@ -175,6 +206,43 @@ public class HospitalPage {
 
         public void setImg(String img) {
             this.img = img;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.id);
+            dest.writeString(this.tsks);
+            dest.writeString(this.bus);
+            dest.writeString(this.cityName);
+            dest.writeString(this.keshi);
+            dest.writeString(this.provinceName);
+            dest.writeString(this.addr);
+            dest.writeString(this.zzjb);
+            dest.writeString(this.hosName);
+            dest.writeString(this.info);
+            dest.writeString(this.img);
+        }
+
+        @Override
+        public String toString() {
+            return "HospitalInfo{" +
+                    "id='" + id + '\'' +
+                    ", tsks='" + tsks + '\'' +
+                    ", bus='" + bus + '\'' +
+                    ", cityName='" + cityName + '\'' +
+                    ", keshi='" + keshi + '\'' +
+                    ", provinceName='" + provinceName + '\'' +
+                    ", addr='" + addr + '\'' +
+                    ", zzjb='" + zzjb + '\'' +
+                    ", hosName='" + hosName + '\'' +
+                    ", info='" + info + '\'' +
+                    ", img='" + img + '\'' +
+                    '}';
         }
     }
 }

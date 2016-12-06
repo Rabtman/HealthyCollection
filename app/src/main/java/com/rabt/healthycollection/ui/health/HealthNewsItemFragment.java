@@ -57,7 +57,7 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
             }
         });
 
-        healthNewsAdapter = new HealthNewsAdapter(new ArrayList<HealthNewsPage.Page.Content>());
+        healthNewsAdapter = new HealthNewsAdapter(new ArrayList<HealthNewsPage.HealthNews>());
         healthNewsAdapter.openLoadAnimation();
         healthNewsAdapter.openLoadMore(20);
         healthNewsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
@@ -71,7 +71,7 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                HealthNewsPage.Page.Content item = (HealthNewsPage.Page.Content) baseQuickAdapter.getItem(i);
+                HealthNewsPage.HealthNews item = (HealthNewsPage.HealthNews) baseQuickAdapter.getItem(i);
                 Intent intent = new Intent(getActivity(), HealthNewsDetailActivity.class);
                 intent.putExtra(HealthConstants.HEALTHNEWS_ID, item.getId());
                 getContext().startActivity(intent);
@@ -92,7 +92,7 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
     }
 
     @Override
-    public void showContent(List<HealthNewsPage.Page.Content> items) {
+    public void showContent(List<HealthNewsPage.HealthNews> items) {
         if (mSwipeLayout != null && mSwipeLayout.isRefreshing()) {
             mSwipeLayout.setRefreshing(false);
         }
@@ -101,7 +101,7 @@ public class HealthNewsItemFragment extends BaseFragment<HealthNewsItemPresenter
     }
 
     @Override
-    public void showMoreContent(List<HealthNewsPage.Page.Content> items, boolean hasMore) {
+    public void showMoreContent(List<HealthNewsPage.HealthNews> items, boolean hasMore) {
         healthNewsAdapter.addData(items);
         if (!hasMore) {
             healthNewsAdapter.loadComplete();

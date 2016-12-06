@@ -1,14 +1,14 @@
 package com.rabt.healthycollection.ui.health.adapter;
 
-import android.os.Build;
-import android.text.Html;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.rabt.healthycollection.BuildConfig;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
+import com.rabt.healthycollection.utils.TimeUtil;
 
 import java.util.List;
 
@@ -18,27 +18,22 @@ import java.util.List;
  * description: 健康资讯列表项适配器
  */
 
-public class HealthNewsAdapter extends BaseQuickAdapter<HealthNewsPage.Page.Content, BaseViewHolder> {
+public class HealthNewsAdapter extends BaseQuickAdapter<HealthNewsPage.HealthNews, BaseViewHolder> {
 
     public HealthNewsAdapter() {
         super(R.layout.healthnews_item, null);
     }
 
-    public HealthNewsAdapter(List<HealthNewsPage.Page.Content> data) {
+    public HealthNewsAdapter(List<HealthNewsPage.HealthNews> data) {
         super(R.layout.healthnews_item, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, HealthNewsPage.Page.Content content) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            helper.setText(R.id.card_title, Html.fromHtml(content.getTitle(), Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            helper.setText(R.id.card_title, Html.fromHtml(content.getTitle()));
-        }
-        helper.setText(R.id.card_date, content.getTime())
-                .setText(R.id.card_author, content.getAuthor());
+    protected void convert(BaseViewHolder helper, HealthNewsPage.HealthNews content) {
+        helper.setText(R.id.card_title, content.getTitle())
+                .setText(R.id.card_date, TimeUtil.millis2String(content.getTime(), "yyyy-MM-dd"));
         Glide.with(mContext)
-                .load(content.getImg())
+                .load(BuildConfig.TN_IMG_URL + content.getImg())
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
                 .crossFade()

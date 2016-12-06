@@ -5,7 +5,6 @@ import com.rabt.healthycollection.api.HealthService;
 import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.RxPresenter;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
-import com.rabt.healthycollection.model.http.ShowApiResponse;
 import com.rabt.healthycollection.ui.health.view.HealthNewsView;
 import com.rabt.healthycollection.utils.RxUtil;
 
@@ -31,15 +30,14 @@ public class HealthNewsItemPresenter extends RxPresenter<HealthNewsView> {
     }
 
     //获取漫画列表
-    public void getHealthList(int tid) {
+    public void getHealthList(int id) {
         currentPage = 1;
-        Subscription subscription = healthService.getHealthListInfo(tid, "", currentPage)
-                .compose(RxUtil.<ShowApiResponse<HealthNewsPage>>rxSchedulerHelper())
-                .compose(RxUtil.<HealthNewsPage>handleShowApiResult())
+        Subscription subscription = healthService.getHealthListInfo(id, currentPage)
+                .compose(RxUtil.<HealthNewsPage>rxSchedulerHelper())
                 .subscribe(new Action1<HealthNewsPage>() {
                     @Override
                     public void call(HealthNewsPage healthNewsPage) {
-                        mView.showContent(healthNewsPage.getPage().getContentlist());
+                        mView.showContent(healthNewsPage.getHealthNewsList());
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -51,15 +49,14 @@ public class HealthNewsItemPresenter extends RxPresenter<HealthNewsView> {
     }
 
     //加载更多
-    public void getMoreHealthList(int tid) {
-        Subscription subscription = healthService.getHealthListInfo(tid, "", ++currentPage)
-                .compose(RxUtil.<ShowApiResponse<HealthNewsPage>>rxSchedulerHelper())
-                .compose(RxUtil.<HealthNewsPage>handleShowApiResult())
+    public void getMoreHealthList(int id) {
+        Subscription subscription = healthService.getHealthListInfo(id, ++currentPage)
+                .compose(RxUtil.<HealthNewsPage>rxSchedulerHelper())
                 .subscribe(new Action1<HealthNewsPage>() {
                     @Override
                     public void call(HealthNewsPage healthNewsPage) {
-                        mView.showMoreContent(healthNewsPage.getPage().getContentlist(),
-                                healthNewsPage.getPage().getCurrentPage() < healthNewsPage.getPage().getAllPages());  //判断是否有下一页
+                        mView.showMoreContent(healthNewsPage.getHealthNewsList(),
+                                (healthNewsPage.getHealthNewsList() != null && healthNewsPage.getHealthNewsList().size() > 0));  //判断是否有下一页
                     }
                 }, new Action1<Throwable>() {
                     @Override

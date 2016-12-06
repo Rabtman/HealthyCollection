@@ -13,6 +13,7 @@
     <string name="nav_setting">设置</string>
 
     <string name="format_drug_type">（ %s ）</string>
+    <string name="format_hospital_tsks">（ %s ）</string>
     //药品详情
     <string name="format_drug_ggxh">【规格】：\n &#160;&#160;%s</string>
     <string name="format_drug_pzwh">【批准文号】：\n &#160;&#160;%s</string>

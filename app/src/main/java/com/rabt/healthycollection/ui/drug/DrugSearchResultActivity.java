@@ -61,7 +61,7 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getDrugList(drugKeyWord, drugType, "");
+                mPresenter.getDrugList(drugKeyWord);
             }
         });
 
@@ -71,7 +71,7 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
         drugSearchResultAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mPresenter.getMoreDrugList(drugKeyWord, drugType, "");
+                mPresenter.getMoreDrugList(drugKeyWord);
             }
         });
 
@@ -81,13 +81,13 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
                 DrugInfoPage.DrugInfo item = (DrugInfoPage.DrugInfo) baseQuickAdapter.getItem(i);
                 Intent intent = new Intent(getBaseContext(), DrugInfoDetailActivity.class);
-                intent.putExtra(HealthConstants.DRUG_INFO, item);
+                intent.putExtra(HealthConstants.DRUG_ID, item.getId());
                 startActivity(intent);
             }
         });
         mRecyclerView.setAdapter(drugSearchResultAdapter);
         showProgress();
-        mPresenter.getDrugList(drugKeyWord, drugType, "");
+        mPresenter.getDrugList(drugKeyWord);
     }
 
     @Override

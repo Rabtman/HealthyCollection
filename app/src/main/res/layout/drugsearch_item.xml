@@ -26,12 +26,13 @@
             android:layout_alignRight="@+id/card_date"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/card_img"
+            android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/colorText"
             android:textSize="@dimen/body"
-            tools:text="酚氨咖敏片" />
+            tools:text="哮喘胶囊" />
 
         <TextView
             android:id="@+id/card_type"
@@ -44,10 +45,10 @@
             android:maxLines="1"
             android:textColor="@color/sub_text"
             android:textSize="@dimen/caption"
-            tools:text="(血液和淋巴系统疾病)" />
+            tools:text="(中成药)" />
 
         <TextView
-            android:id="@+id/card_use"
+            android:id="@+id/card_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_type"
@@ -55,21 +56,10 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/card_img"
-            android:maxLines="2"
-            android:textColor="@color/sub_text"
-            android:textSize="@dimen/caption"
-            tools:text="用于感冒发热、头痛、神经痛及风湿痛等。\n123123" />
-
-        <TextView
-            android:id="@+id/card_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/card_use"
-            android:layout_marginRight="5dp"
+            android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/sub_text"
             android:textSize="@dimen/caption"
-            tools:text="葵花药业集团(衡水)得菲尔有限公司" />
+            tools:text="哮喘,气管炎,过敏,过敏性哮喘" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

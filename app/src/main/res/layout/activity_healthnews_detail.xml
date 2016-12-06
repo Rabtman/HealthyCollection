@@ -39,43 +39,39 @@
                 tools:text="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈" />
 
             <TextView
-                android:id="@+id/detial_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detial_title"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/sub_text"
-                android:textSize="@dimen/subheading"
-                tools:text="凤凰网" />
-
-            <TextView
                 android:id="@+id/detial_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/detial_author"
                 android:layout_alignParentRight="true"
+                android:layout_below="@id/detial_title"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/sub_text"
                 android:textSize="@dimen/subheading"
                 tools:text="14天前" />
 
-            <ImageView
-                android:id="@+id/detial_decoration_line"
+            <TextView
+                android:id="@+id/detial_description"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/detial_author"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detial_date"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@color/decoration_line"
-                android:visibility="invisible" />
+                android:background="@color/whitesmoke"
+                android:padding="10dp"
+                android:textColor="@color/sub_text"
+                android:textSize="@dimen/body"
+                tools:text="2016潜力股与实际应用的“医疗黑科技” 其中，包括廉价的诊断试纸、终极抗病毒、可服用的微机器人、新型抗生素等与医疗健康息息相关的创新发明，虽不知道这些发明最终是否能临床使用，也不能预测它给医学界带来的影响如何，先一起来看看“医疗黑科技”究竟有多“神奇”" />
 
             <TextView
                 android:id="@+id/detial_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/detial_decoration_line"
+                android:layout_below="@id/detial_description"
+                android:lineSpacingExtra="4dp"
+                android:padding="10dp"
                 android:textColor="@color/body_text"
                 android:textSize="@dimen/body"
-                tools:text="哈哈哈哈哈哈哈哈哈哈哈哈" />
+                tools:text="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈" />
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 

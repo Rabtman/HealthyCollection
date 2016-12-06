@@ -1,4 +1,4 @@
-package com.rabt.healthycollection.ui.drug.adpater;
+package com.rabt.healthycollection.ui.hospital.adapter;
 
 import android.widget.ImageView;
 
@@ -9,7 +9,7 @@ import com.bumptech.glide.request.target.Target;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.rabt.healthycollection.R;
-import com.rabt.healthycollection.model.bean.DrugInfoPage;
+import com.rabt.healthycollection.model.bean.HospitalPage;
 import com.rabt.healthycollection.utils.StringUtils;
 
 import java.util.List;
@@ -17,25 +17,24 @@ import java.util.List;
 /**
  * author: Rabtman
  * date: 2016-11-13
- * description: 药品搜索列表项适配器
+ * description: 医院搜索列表项适配器
  */
 
-public class DrugSearchResultAdapter extends BaseQuickAdapter<DrugInfoPage.DrugInfo, BaseViewHolder> {
+public class HospitalSearchResultAdapter extends BaseQuickAdapter<HospitalPage.HospitalInfo, BaseViewHolder> {
 
-    public DrugSearchResultAdapter() {
-        super(R.layout.drugsearch_item, null);
+    public HospitalSearchResultAdapter() {
+        super(R.layout.hospitalsearch_item, null);
     }
 
-    public DrugSearchResultAdapter(List<DrugInfoPage.DrugInfo> data) {
-        super(R.layout.drugsearch_item, data);
+    public HospitalSearchResultAdapter(List<HospitalPage.HospitalInfo> data) {
+        super(R.layout.hospitalsearch_item, data);
     }
 
     @Override
-    protected void convert(final BaseViewHolder helper, DrugInfoPage.DrugInfo content) {
+    protected void convert(final BaseViewHolder helper, HospitalPage.HospitalInfo content) {
 
-        helper.setText(R.id.card_name, content.getName())
-                .setText(R.id.card_type, String.format(mContext.getString(R.string.format_drug_type), content.getType()))
-                .setText(R.id.card_tag, content.getTag());
+        helper.setText(R.id.card_name, content.getHosName())
+                .setText(R.id.card_tsks, String.format(mContext.getString(R.string.format_hospital_tsks), content.getTsks()));
         //没有图片地址则不显示图片
         if (StringUtils.isEmpty(content.getImg())) {
             helper.setVisible(R.id.card_img, false);

@@ -14,7 +14,9 @@ android {
         versionName rootProject.ext.android.versionName
         resConfigs rootProject.ext.android.resConfigs
 
-        buildConfigField "String", "BASE_URL", "\"http://route.showapi.com/\""
+        //buildConfigField "String", "BASE_URL", "\"http://route.showapi.com/\""
+        buildConfigField "String", "BASE_URL", "\"http://www.tngou.net/api/\""
+        buildConfigField "String", "TN_IMG_URL", "\"http://tnfs.tngou.net/image\""
         buildConfigField "String", "APP_ID", "\"26744\""
         buildConfigField "String", "API_SIGN", "\"dd81d3c7bddb4b73bf09f69a1d015d8d\""
     }

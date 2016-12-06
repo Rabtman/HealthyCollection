@@ -3,18 +3,14 @@ package com.rabt.healthycollection.ui.drug;
 import android.content.Intent;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageButton;
-import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.SimpleFragment;
 import com.rabt.healthycollection.constant.HealthConstants;
-import com.rabt.healthycollection.model.bean.DrugType;
-import com.rabt.healthycollection.ui.drug.adpater.DrugTypeAdapter;
 import com.rabt.healthycollection.utils.KeyboardUtils;
 import com.rabt.healthycollection.utils.StringUtils;
 import com.rabt.healthycollection.utils.ToastUtil;
@@ -31,8 +27,6 @@ import butterknife.OnClick;
 public class DrugMainFragment extends SimpleFragment {
 
 
-    @BindView(R.id.drug_category)
-    AppCompatSpinner drugCategory;
     @BindView(R.id.drug_search)
     AppCompatImageButton drugSearch;
     @BindView(R.id.drug_line)
@@ -51,24 +45,6 @@ public class DrugMainFragment extends SimpleFragment {
 
     @Override
     protected void initData() {
-        DrugTypeAdapter drugTypeAdapter = new DrugTypeAdapter(getContext());
-        drugCategory.setAdapter(drugTypeAdapter);
-        drugCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    drugType = "";
-                } else {
-                    drugType = ((DrugType) parent.getItemAtPosition(position)).getType();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         //监听输入框变化
         drugKeyword.addTextChangedListener(new TextWatcher() {
             @Override

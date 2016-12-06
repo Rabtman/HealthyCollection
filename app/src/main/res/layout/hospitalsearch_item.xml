@@ -23,11 +23,11 @@
             android:id="@+id/card_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="16dp"
             android:layout_toRightOf="@+id/card_img"
+            android:maxLines="2"
             android:textColor="@color/colorText"
             android:textSize="@dimen/body"
             tools:text="上海市松江区传染病医院" />
@@ -37,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/card_name"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/card_img"
@@ -44,22 +45,5 @@
             android:textColor="@color/sub_text"
             android:textSize="@dimen/caption"
             tools:text="(整形外科 美容皮肤科 美容牙科 )" />
-        <!--
-
-                <TextView
-                    android:id="@+id/card_zzjb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_tsks"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/card_img"
-                    android:maxLines="2"
-                    android:textColor="@color/sub_text"
-                    android:textSize="@dimen/caption"
-                    tools:text="【主治】：遗传代谢病 遗传性皮肤病 小儿遗传性果糖不耐受 无精症 射精功能障碍 少精子症 精子异常" />
-        -->
-
     </RelativeLayout>
 </android.support.v7.widget.CardView>

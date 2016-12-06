@@ -5,7 +5,6 @@ import com.rabt.healthycollection.api.HealthService;
 import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.RxPresenter;
 import com.rabt.healthycollection.model.bean.DrugInfoPage;
-import com.rabt.healthycollection.model.http.ShowApiResponse;
 import com.rabt.healthycollection.ui.drug.view.DrugSearchResultView;
 import com.rabt.healthycollection.utils.RxUtil;
 
@@ -31,19 +30,14 @@ public class DrugSearchResultPresenter extends RxPresenter<DrugSearchResultView>
     }
 
     //查询药品
-    public void getDrugList(String keyword, String type, String manu) {
+    public void getDrugList(String keyword) {
         currentPage = 1;
-        Subscription subscription = healthService.getDrugListInfo(keyword, type, manu, currentPage)
-                .compose(RxUtil.<ShowApiResponse<DrugInfoPage>>rxSchedulerHelper())
-                .compose(RxUtil.<DrugInfoPage>handleShowApiResult())
+        Subscription subscription = healthService.getDrugListInfo(keyword, currentPage)
+                .compose(RxUtil.<DrugInfoPage>rxSchedulerHelper())
                 .subscribe(new Action1<DrugInfoPage>() {
                                @Override
                                public void call(DrugInfoPage drugInfoPage) {
-                                   if (drugInfoPage.getCode().equals("0")) {
-                                       mView.showContent(drugInfoPage.getDrugList());
-                                   } else {
-                                       mView.showError(drugInfoPage.getMsg());
-                                   }
+                                   mView.showContent(drugInfoPage.getDrugInfoList());
                                }
                            },
                         new Action1<Throwable>() {
@@ -56,14 +50,14 @@ public class DrugSearchResultPresenter extends RxPresenter<DrugSearchResultView>
     }
 
     //查询更多药品
-    public void getMoreDrugList(String keyword, String type, String manu) {
-        Subscription subscription = healthService.getDrugListInfo(keyword, type, manu, ++currentPage)
-                .compose(RxUtil.<ShowApiResponse<DrugInfoPage>>rxSchedulerHelper())
-                .compose(RxUtil.<DrugInfoPage>handleShowApiResult())
+    public void getMoreDrugList(String keyword) {
+        Subscription subscription = healthService.getDrugListInfo(keyword, ++currentPage)
+                .compose(RxUtil.<DrugInfoPage>rxSchedulerHelper())
                 .subscribe(new Action1<DrugInfoPage>() {
                                @Override
                                public void call(DrugInfoPage drugInfoPage) {
-                                   mView.showMoreContent(drugInfoPage.getDrugList(), (currentPage * 20 < drugInfoPage.getCount()));
+                                   mView.showMoreContent(drugInfoPage.getDrugInfoList(),
+                                           (drugInfoPage.getDrugInfoList() != null && drugInfoPage.getDrugInfoList().size() > 0));
                                }
                            },
                         new Action1<Throwable>() {

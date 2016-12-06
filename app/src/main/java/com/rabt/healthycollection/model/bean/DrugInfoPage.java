@@ -14,52 +14,33 @@ import java.util.List;
  */
 
 public class DrugInfoPage {
-    @SerializedName("ret_code")
-    private String code;
-    private int page;
-    @SerializedName("allResults")
-    private int count;
-    private String msg;
-    private List<DrugInfo> drugList;
+    private boolean status;
+    private int total;
+    @SerializedName("tngou")
+    private List<DrugInfo> drugInfoList;
 
-    public String getCode() {
-        return code;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
-    public int getPage() {
-        return page;
+    public int getTotal() {
+        return total;
     }
 
-    public void setPage(int page) {
-        this.page = page;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
-    public int getCount() {
-        return count;
+    public List<DrugInfo> getDrugInfoList() {
+        return drugInfoList;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public List<DrugInfo> getDrugList() {
-        return drugList;
-    }
-
-    public void setDrugList(List<DrugInfo> drugList) {
-        this.drugList = drugList;
+    public void setDrugInfoList(List<DrugInfo> drugInfoList) {
+        this.drugInfoList = drugInfoList;
     }
 
     public static class DrugInfo implements Parcelable {
@@ -74,99 +55,67 @@ public class DrugInfoPage {
                 return new DrugInfo[size];
             }
         };
-        private String zysx;
-        private String blfy;
-        private String zc;
-        private String drugName;
-        private String pzwh;
-        private String yfyl;
+        private int count;
+        private String description;
+        private int fcount;
+        private int id;
         private String img;
+        private String keywords;
+        private String message;
+        private String name;
+        private int price;
+        private int rcount;
+        private String tag;
         private String type;
-        private String xz;
-        private String zzjb;
-        private String jj;
-        private String id;
-        private String price;
-        private String manu;
-        private String zxbz;
-        private String yxq;
-        private String ggxh;
-        private String zycf;
-        private String syz;
-        private String ywxhzy;
 
         public DrugInfo() {
         }
 
         protected DrugInfo(Parcel in) {
-            this.zysx = in.readString();
-            this.blfy = in.readString();
-            this.zc = in.readString();
-            this.drugName = in.readString();
-            this.pzwh = in.readString();
-            this.yfyl = in.readString();
+            this.count = in.readInt();
+            this.description = in.readString();
+            this.fcount = in.readInt();
+            this.id = in.readInt();
             this.img = in.readString();
+            this.keywords = in.readString();
+            this.message = in.readString();
+            this.name = in.readString();
+            this.price = in.readInt();
+            this.rcount = in.readInt();
+            this.tag = in.readString();
             this.type = in.readString();
-            this.xz = in.readString();
-            this.zzjb = in.readString();
-            this.jj = in.readString();
-            this.id = in.readString();
-            this.price = in.readString();
-            this.manu = in.readString();
-            this.zxbz = in.readString();
-            this.yxq = in.readString();
-            this.ggxh = in.readString();
-            this.zycf = in.readString();
-            this.syz = in.readString();
-            this.ywxhzy = in.readString();
         }
 
-        public String getZysx() {
-            return zysx;
+        public int getCount() {
+            return count;
         }
 
-        public void setZysx(String zysx) {
-            this.zysx = zysx;
+        public void setCount(int count) {
+            this.count = count;
         }
 
-        public String getBlfy() {
-            return blfy;
+        public String getDescription() {
+            return description;
         }
 
-        public void setBlfy(String blfy) {
-            this.blfy = blfy;
+        public void setDescription(String description) {
+            this.description = description;
         }
 
-        public String getZc() {
-            return zc;
+        public int getFcount() {
+            return fcount;
         }
 
-        public void setZc(String zc) {
-            this.zc = zc;
+        public void setFcount(int fcount) {
+            this.fcount = fcount;
         }
 
-        public String getDrugName() {
-            return drugName;
+        public int getId() {
+            return id;
         }
 
-        public void setDrugName(String drugName) {
-            this.drugName = drugName;
-        }
-
-        public String getPzwh() {
-            return pzwh;
-        }
-
-        public void setPzwh(String pzwh) {
-            this.pzwh = pzwh;
-        }
-
-        public String getYfyl() {
-            return yfyl;
-        }
-
-        public void setYfyl(String yfyl) {
-            this.yfyl = yfyl;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public String getImg() {
@@ -177,6 +126,54 @@ public class DrugInfoPage {
             this.img = img;
         }
 
+        public String getKeywords() {
+            return keywords;
+        }
+
+        public void setKeywords(String keywords) {
+            this.keywords = keywords;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        public void setPrice(int price) {
+            this.price = price;
+        }
+
+        public int getRcount() {
+            return rcount;
+        }
+
+        public void setRcount(int rcount) {
+            this.rcount = rcount;
+        }
+
+        public String getTag() {
+            return tag;
+        }
+
+        public void setTag(String tag) {
+            this.tag = tag;
+        }
+
         public String getType() {
             return type;
         }
@@ -185,100 +182,22 @@ public class DrugInfoPage {
             this.type = type;
         }
 
-        public String getXz() {
-            return xz;
-        }
-
-        public void setXz(String xz) {
-            this.xz = xz;
-        }
-
-        public String getZzjb() {
-            return zzjb;
-        }
-
-        public void setZzjb(String zzjb) {
-            this.zzjb = zzjb;
-        }
-
-        public String getJj() {
-            return jj;
-        }
-
-        public void setJj(String jj) {
-            this.jj = jj;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getPrice() {
-            return price;
-        }
-
-        public void setPrice(String price) {
-            this.price = price;
-        }
-
-        public String getManu() {
-            return manu;
-        }
-
-        public void setManu(String manu) {
-            this.manu = manu;
-        }
-
-        public String getZxbz() {
-            return zxbz;
-        }
-
-        public void setZxbz(String zxbz) {
-            this.zxbz = zxbz;
-        }
-
-        public String getYxq() {
-            return yxq;
-        }
-
-        public void setYxq(String yxq) {
-            this.yxq = yxq;
-        }
-
-        public String getGgxh() {
-            return ggxh;
-        }
-
-        public void setGgxh(String ggxh) {
-            this.ggxh = ggxh;
-        }
-
-        public String getZycf() {
-            return zycf;
-        }
-
-        public void setZycf(String zycf) {
-            this.zycf = zycf;
-        }
-
-        public String getSyz() {
-            return syz;
-        }
-
-        public void setSyz(String syz) {
-            this.syz = syz;
-        }
-
-        public String getYwxhzy() {
-            return ywxhzy;
-        }
-
-        public void setYwxhzy(String ywxhzy) {
-            this.ywxhzy = ywxhzy;
+        @Override
+        public String toString() {
+            return "DrugInfo{" +
+                    "count=" + count +
+                    ", description='" + description + '\'' +
+                    ", fcount=" + fcount +
+                    ", id=" + id +
+                    ", img='" + img + '\'' +
+                    ", keywords='" + keywords + '\'' +
+                    ", message='" + message + '\'' +
+                    ", name='" + name + '\'' +
+                    ", price=" + price +
+                    ", rcount=" + rcount +
+                    ", tag='" + tag + '\'' +
+                    ", type='" + type + '\'' +
+                    '}';
         }
 
         @Override
@@ -288,26 +207,18 @@ public class DrugInfoPage {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.zysx);
-            dest.writeString(this.blfy);
-            dest.writeString(this.zc);
-            dest.writeString(this.drugName);
-            dest.writeString(this.pzwh);
-            dest.writeString(this.yfyl);
+            dest.writeInt(this.count);
+            dest.writeString(this.description);
+            dest.writeInt(this.fcount);
+            dest.writeInt(this.id);
             dest.writeString(this.img);
+            dest.writeString(this.keywords);
+            dest.writeString(this.message);
+            dest.writeString(this.name);
+            dest.writeInt(this.price);
+            dest.writeInt(this.rcount);
+            dest.writeString(this.tag);
             dest.writeString(this.type);
-            dest.writeString(this.xz);
-            dest.writeString(this.zzjb);
-            dest.writeString(this.jj);
-            dest.writeString(this.id);
-            dest.writeString(this.price);
-            dest.writeString(this.manu);
-            dest.writeString(this.zxbz);
-            dest.writeString(this.yxq);
-            dest.writeString(this.ggxh);
-            dest.writeString(this.zycf);
-            dest.writeString(this.syz);
-            dest.writeString(this.ywxhzy);
         }
     }
 }

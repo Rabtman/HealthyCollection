@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.rabt.healthycollection.base.di.module.ActivityModule;
 import com.rabt.healthycollection.base.di.scope.ActivityScope;
+import com.rabt.healthycollection.ui.drug.DrugInfoDetailActivity;
 import com.rabt.healthycollection.ui.drug.DrugSearchResultActivity;
 import com.rabt.healthycollection.ui.health.HealthNewsDetailActivity;
 import com.rabt.healthycollection.ui.main.MainActivity;
@@ -27,4 +28,6 @@ public interface ActivityComponent {
     void inject(HealthNewsDetailActivity activity);
 
     void inject(DrugSearchResultActivity activity);
+
+    void inject(DrugInfoDetailActivity activity);
 }
