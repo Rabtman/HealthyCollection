@@ -7,6 +7,8 @@ import com.rabt.healthycollection.base.di.scope.ActivityScope;
 import com.rabt.healthycollection.ui.drug.DrugInfoDetailActivity;
 import com.rabt.healthycollection.ui.drug.DrugSearchResultActivity;
 import com.rabt.healthycollection.ui.health.HealthNewsDetailActivity;
+import com.rabt.healthycollection.ui.hospital.HospitalInfoDetailActivity;
+import com.rabt.healthycollection.ui.hospital.HospitalSearchResultActivity;
 import com.rabt.healthycollection.ui.main.MainActivity;
 
 import dagger.Component;
@@ -30,4 +32,8 @@ public interface ActivityComponent {
     void inject(DrugSearchResultActivity activity);
 
     void inject(DrugInfoDetailActivity activity);
+
+    void inject(HospitalInfoDetailActivity activity);
+
+    void inject(HospitalSearchResultActivity activity);
 }

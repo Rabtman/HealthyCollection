@@ -32,7 +32,7 @@ public class DrugSearchResultPresenter extends RxPresenter<DrugSearchResultView>
     //查询药品
     public void getDrugList(String keyword) {
         currentPage = 1;
-        Subscription subscription = healthService.getDrugListInfo(keyword, currentPage)
+        Subscription subscription = healthService.searchDrugListInfo(keyword, currentPage)
                 .compose(RxUtil.<DrugInfoPage>rxSchedulerHelper())
                 .subscribe(new Action1<DrugInfoPage>() {
                                @Override
@@ -51,7 +51,7 @@ public class DrugSearchResultPresenter extends RxPresenter<DrugSearchResultView>
 
     //查询更多药品
     public void getMoreDrugList(String keyword) {
-        Subscription subscription = healthService.getDrugListInfo(keyword, ++currentPage)
+        Subscription subscription = healthService.searchDrugListInfo(keyword, ++currentPage)
                 .compose(RxUtil.<DrugInfoPage>rxSchedulerHelper())
                 .subscribe(new Action1<DrugInfoPage>() {
                                @Override

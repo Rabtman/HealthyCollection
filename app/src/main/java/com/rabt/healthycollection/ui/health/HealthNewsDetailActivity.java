@@ -1,12 +1,10 @@
 package com.rabt.healthycollection.ui.health;
 
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.widget.TextView;
 
-import com.jaeger.library.StatusBarUtil;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
 import com.rabt.healthycollection.constant.HealthConstants;
@@ -49,7 +47,6 @@ public class HealthNewsDetailActivity extends BaseActivity<HealthNewsDetailPrese
 
     @Override
     protected void initData() {
-        StatusBarUtil.setColor(mContext, ContextCompat.getColor(mContext, R.color.colorPrimary));
         setToolBar(mToolBar, "");
         showProgress();
         mPresenter.getHealthNewsDetail(getIntent().getIntExtra(HealthConstants.HEALTHNEWS_ID, -1));

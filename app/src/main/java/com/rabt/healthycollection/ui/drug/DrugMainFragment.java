@@ -36,8 +36,6 @@ public class DrugMainFragment extends SimpleFragment {
     @BindView(R.id.drug_keyword)
     AppCompatEditText drugKeyword;
 
-    private String drugType;
-
     @Override
     protected int getLayout() {
         return R.layout.fragment_drug_main;
@@ -78,7 +76,6 @@ public class DrugMainFragment extends SimpleFragment {
         KeyboardUtils.hideSoftInput(getActivity());
         Intent intent = new Intent(getContext(), DrugSearchResultActivity.class);
         intent.putExtra(HealthConstants.DRUG_KEYWORD, drugKeyword.getText().toString());
-        intent.putExtra(HealthConstants.DRUG_TYPE, drugType);
         startActivity(intent);
     }
 

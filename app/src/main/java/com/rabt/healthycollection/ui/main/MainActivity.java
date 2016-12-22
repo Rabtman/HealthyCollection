@@ -1,5 +1,6 @@
 package com.rabt.healthycollection.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -7,16 +8,22 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.jaeger.library.StatusBarUtil;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
+import com.rabt.healthycollection.constant.HealthConstants;
 import com.rabt.healthycollection.ui.drug.DrugMainFragment;
 import com.rabt.healthycollection.ui.health.HealthNewsMainFragment;
 import com.rabt.healthycollection.ui.hospital.HospitalMainFragment;
+import com.rabt.healthycollection.ui.hospital.HospitalSearchResultActivity;
+import com.rabt.healthycollection.utils.StringUtils;
+import com.rabt.healthycollection.utils.ToastUtil;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -47,6 +54,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private int hideFragment = R.id.nav_health;
     private int showFragment = R.id.nav_health;
 
+    private MenuItem searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +73,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    protected void initData() {
+    protected void setStatusBar() {
         StatusBarUtil.setColorForDrawerLayout(mContext, drawerLayout, ContextCompat.getColor(mContext, R.color.colorPrimary), 0);
+    }
+
+    @Override
+    protected void initData() {
         setToolBar(mToolBar, getString(R.string.nav_health));
         toggle = new ActionBarDrawerToggle(this, drawerLayout, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -83,15 +96,19 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 switch (item.getItemId()) {
                     case R.id.nav_health:
                         showFragment = R.id.nav_health;
+                        searchView.setVisible(false);
                         break;
                     case R.id.nav_hospital:
                         showFragment = R.id.nav_hospital;
+                        searchView.setVisible(true);
                         break;
                     case R.id.nav_drug:
                         showFragment = R.id.nav_drug;
+                        searchView.setVisible(false);
                         break;
                     case R.id.nav_setting:
                         showFragment = R.id.nav_setting;
+                        searchView.setVisible(false);
                         break;
                 }
                 showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
@@ -115,6 +132,33 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 return healthNewsMainFragment;
         }
         return healthNewsMainFragment;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        searchView = menu.findItem(R.id.search_view);
+        SearchView view = (SearchView) searchView.getActionView();
+        view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (StringUtils.isEmpty(query)) {
+                    ToastUtil.shortShow(getString(R.string.msg_search_keyword_null));
+                } else {
+                    //KeyboardUtils.hideSoftInput(this);
+                    Intent intent = new Intent(getBaseContext(), HospitalSearchResultActivity.class);
+                    intent.putExtra(HealthConstants.HOSPITAL_KEYWORD, query);
+                    startActivity(intent);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
     }
 
     @Override

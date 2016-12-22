@@ -40,6 +40,9 @@
         <activity
             android:name=".ui.hospital.HospitalInfoDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.hospital.HospitalSearchResultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

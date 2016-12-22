@@ -5,7 +5,7 @@ import com.rabt.healthycollection.api.HealthService;
 import com.rabt.healthycollection.base.App;
 import com.rabt.healthycollection.base.RxPresenter;
 import com.rabt.healthycollection.model.bean.HospitalPage;
-import com.rabt.healthycollection.ui.hospital.view.HospitalMainView;
+import com.rabt.healthycollection.ui.hospital.view.HospitalSearchResultView;
 import com.rabt.healthycollection.utils.RxUtil;
 
 import javax.inject.Inject;
@@ -19,20 +19,20 @@ import rx.functions.Action1;
  * description:
  */
 
-public class HospitalMainPresenter extends RxPresenter<HospitalMainView> {
+public class HospitalSearchResultPresenter extends RxPresenter<HospitalSearchResultView> {
 
     private HealthService healthService;
     private int currentPage = 1;
 
     @Inject
-    public HospitalMainPresenter(HealthService healthService) {
+    public HospitalSearchResultPresenter(HealthService healthService) {
         this.healthService = healthService;
     }
 
-    //查询医院信息
-    public void getHospitalList() {
+    //查询药品
+    public void getHospitalList(String keyword) {
         currentPage = 1;
-        Subscription subscription = healthService.getHospitalList(currentPage, 39.90, 116.405)
+        Subscription subscription = healthService.searchHospitalListInfo(keyword, currentPage)
                 .compose(RxUtil.<HospitalPage>rxSchedulerHelper())
                 .subscribe(new Action1<HospitalPage>() {
                                @Override
@@ -49,9 +49,9 @@ public class HospitalMainPresenter extends RxPresenter<HospitalMainView> {
         addSubscribe(subscription);
     }
 
-    //查询更多医院信息
-    public void getMoreHospitalList() {
-        Subscription subscription = healthService.getHospitalList(++currentPage, 39.90, 116.405)
+    //查询更多药品
+    public void getMoreHospitalList(String keyword) {
+        Subscription subscription = healthService.searchHospitalListInfo(keyword, ++currentPage)
                 .compose(RxUtil.<HospitalPage>rxSchedulerHelper())
                 .subscribe(new Action1<HospitalPage>() {
                                @Override

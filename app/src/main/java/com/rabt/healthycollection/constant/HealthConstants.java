@@ -19,9 +19,10 @@ public class HealthConstants {
     public static final String HEALTHNEWS_ID = "healthnews_id";
     public static final String DRUG_ID = "drug_id";
     public static final String DRUG_KEYWORD = "drug_keyword";
-    public static final String DRUG_TYPE = "drug_type";
     public static final String DRUG_INFO = "drug_info";
+    public static final String HOSPITAL_ID = "hospital_id";
     public static final String HOSPITAL_INFO = "hospital_info";
+    public static final String HOSPITAL_KEYWORD = "hospital_keyword";
     public static final String HOSPITAL_CITY = "hospital_city";
 
     //request code

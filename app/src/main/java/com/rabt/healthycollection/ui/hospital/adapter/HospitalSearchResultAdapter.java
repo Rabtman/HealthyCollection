@@ -8,6 +8,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.rabt.healthycollection.BuildConfig;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.model.bean.HospitalPage;
 import com.rabt.healthycollection.utils.StringUtils;
@@ -33,15 +34,17 @@ public class HospitalSearchResultAdapter extends BaseQuickAdapter<HospitalPage.H
     @Override
     protected void convert(final BaseViewHolder helper, HospitalPage.HospitalInfo content) {
 
-        helper.setText(R.id.card_name, content.getHosName())
-                .setText(R.id.card_tsks, String.format(mContext.getString(R.string.format_hospital_tsks), content.getTsks()));
+        helper.setText(R.id.card_name, content.getName())
+                .setText(R.id.card_level, String.format(mContext.getString(R.string.format_hospital_tsks), content.getLevel()))
+                .setText(R.id.card_address, content.getAddress())
+                .setText(R.id.card_phone, content.getTel());
         //没有图片地址则不显示图片
         if (StringUtils.isEmpty(content.getImg())) {
             helper.setVisible(R.id.card_img, false);
         } else {
             helper.setVisible(R.id.card_img, true);
             Glide.with(mContext)
-                    .load(content.getImg())
+                    .load(BuildConfig.TN_IMG_URL + content.getImg())
                     .centerCrop()
                     .placeholder(R.mipmap.ic_launcher)
                     .crossFade()

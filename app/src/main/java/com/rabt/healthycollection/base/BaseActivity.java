@@ -5,9 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.jaeger.library.StatusBarUtil;
+import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.di.component.ActivityComponent;
 import com.rabt.healthycollection.base.di.component.DaggerActivityComponent;
 import com.rabt.healthycollection.base.di.module.ActivityModule;
@@ -40,6 +43,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         mContext = this;
         initProgressDialog(mContext);
         inject();
+        setStatusBar();
         if (mPresenter != null) mPresenter.attachView(this);
         App.getInstance().addActivity(this);
         initData();
@@ -96,6 +100,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         if (mPresenter != null) mPresenter.detachView();
         mUnbinder.unbind();
         App.getInstance().removeActvity(this);
+    }
+
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(mContext, ContextCompat.getColor(mContext, R.color.colorPrimary), 0);
     }
 
     protected abstract void inject();

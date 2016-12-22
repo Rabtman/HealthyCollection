@@ -63,7 +63,7 @@ public class DrugInfoPage {
         private String keywords;
         private String message;
         private String name;
-        private int price;
+        private double price;
         private int rcount;
         private String tag;
         private String type;
@@ -150,7 +150,7 @@ public class DrugInfoPage {
             this.name = name;
         }
 
-        public int getPrice() {
+        public double getPrice() {
             return price;
         }
 
@@ -215,7 +215,7 @@ public class DrugInfoPage {
             dest.writeString(this.keywords);
             dest.writeString(this.message);
             dest.writeString(this.name);
-            dest.writeInt(this.price);
+            dest.writeDouble(this.price);
             dest.writeInt(this.rcount);
             dest.writeString(this.tag);
             dest.writeString(this.type);

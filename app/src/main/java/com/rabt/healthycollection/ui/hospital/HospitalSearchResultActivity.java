@@ -1,4 +1,4 @@
-package com.rabt.healthycollection.ui.drug;
+package com.rabt.healthycollection.ui.hospital;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,10 +12,10 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.rabt.healthycollection.R;
 import com.rabt.healthycollection.base.BaseActivity;
 import com.rabt.healthycollection.constant.HealthConstants;
-import com.rabt.healthycollection.model.bean.DrugInfoPage;
-import com.rabt.healthycollection.ui.drug.adpater.DrugSearchResultAdapter;
-import com.rabt.healthycollection.ui.drug.presenter.DrugSearchResultPresenter;
-import com.rabt.healthycollection.ui.drug.view.DrugSearchResultView;
+import com.rabt.healthycollection.model.bean.HospitalPage;
+import com.rabt.healthycollection.ui.hospital.adapter.HospitalSearchResultAdapter;
+import com.rabt.healthycollection.ui.hospital.presenter.HospitalSearchResultPresenter;
+import com.rabt.healthycollection.ui.hospital.view.HospitalSearchResultView;
 import com.rabt.healthycollection.utils.SnackbarUtil;
 
 import java.util.ArrayList;
@@ -26,10 +26,10 @@ import butterknife.BindView;
 /**
  * author: Rabtman
  * date: 2016-11-30
- * description: 药品搜索结果列表
+ * description: 医院搜索结果列表
  */
 
-public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPresenter> implements DrugSearchResultView {
+public class HospitalSearchResultActivity extends BaseActivity<HospitalSearchResultPresenter> implements HospitalSearchResultView {
     @BindView(R.id.toolbar)
     Toolbar mToolBar;
     @BindView(R.id.swipe_layout)
@@ -37,8 +37,9 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    private String drugKeyWord;
-    private DrugSearchResultAdapter drugSearchResultAdapter;
+    private String hospitalKeyWord;
+
+    private HospitalSearchResultAdapter hospitalSearchResultAdapter;
 
     @Override
     protected void inject() {
@@ -54,22 +55,22 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
     protected void initData() {
         setToolBar(mToolBar, getString(R.string.title_search_result));
         //获取传递的参数
-        drugKeyWord = getIntent().getStringExtra(HealthConstants.DRUG_KEYWORD);
+        hospitalKeyWord = getIntent().getStringExtra(HealthConstants.HOSPITAL_KEYWORD);
 
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getDrugList(drugKeyWord);
+                mPresenter.getHospitalList(hospitalKeyWord);
             }
         });
 
-        drugSearchResultAdapter = new DrugSearchResultAdapter(new ArrayList<DrugInfoPage.DrugInfo>());
-        drugSearchResultAdapter.openLoadAnimation();
-        drugSearchResultAdapter.openLoadMore(20);
-        drugSearchResultAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+        hospitalSearchResultAdapter = new HospitalSearchResultAdapter(new ArrayList<HospitalPage.HospitalInfo>());
+        hospitalSearchResultAdapter.openLoadAnimation();
+        hospitalSearchResultAdapter.openLoadMore(20);
+        hospitalSearchResultAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mPresenter.getMoreDrugList(drugKeyWord);
+                mPresenter.getMoreHospitalList(hospitalKeyWord);
             }
         });
 
@@ -77,15 +78,15 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                DrugInfoPage.DrugInfo item = (DrugInfoPage.DrugInfo) baseQuickAdapter.getItem(i);
-                Intent intent = new Intent(getBaseContext(), DrugInfoDetailActivity.class);
-                intent.putExtra(HealthConstants.DRUG_ID, item.getId());
+                HospitalPage.HospitalInfo item = (HospitalPage.HospitalInfo) baseQuickAdapter.getItem(i);
+                Intent intent = new Intent(getBaseContext(), HospitalInfoDetailActivity.class);
+                intent.putExtra(HealthConstants.HOSPITAL_INFO, item);
                 startActivity(intent);
             }
         });
-        mRecyclerView.setAdapter(drugSearchResultAdapter);
+        mRecyclerView.setAdapter(hospitalSearchResultAdapter);
         showProgress();
-        mPresenter.getDrugList(drugKeyWord);
+        mPresenter.getHospitalList(hospitalKeyWord);
     }
 
     @Override
@@ -98,19 +99,19 @@ public class DrugSearchResultActivity extends BaseActivity<DrugSearchResultPrese
     }
 
     @Override
-    public void showContent(List<DrugInfoPage.DrugInfo> items) {
+    public void showContent(List<HospitalPage.HospitalInfo> items) {
         if (mSwipeLayout != null && mSwipeLayout.isRefreshing()) {
             mSwipeLayout.setRefreshing(false);
         }
         stopProgress();
-        drugSearchResultAdapter.setNewData(items);
+        hospitalSearchResultAdapter.setNewData(items);
     }
 
     @Override
-    public void showMoreContent(List<DrugInfoPage.DrugInfo> items, boolean hasMore) {
-        drugSearchResultAdapter.addData(items);
+    public void showMoreContent(List<HospitalPage.HospitalInfo> items, boolean hasMore) {
+        hospitalSearchResultAdapter.addData(items);
         if (!hasMore) {
-            drugSearchResultAdapter.loadComplete();
+            hospitalSearchResultAdapter.loadComplete();
         }
     }
 }

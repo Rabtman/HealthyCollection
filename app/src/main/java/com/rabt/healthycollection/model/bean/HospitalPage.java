@@ -14,14 +14,18 @@ import java.util.List;
  */
 
 public class HospitalPage {
+    private boolean status;
     private int total;
-    @SerializedName("ret_code")
-    private String code;
-    private boolean flag;
-    private String remark;
-    private int page;
-    private String msg;
+    @SerializedName("tngou")
     private List<HospitalInfo> hospitalList;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public int getTotal() {
         return total;
@@ -29,46 +33,6 @@ public class HospitalPage {
 
     public void setTotal(int total) {
         this.total = total;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public boolean isFlag() {
-        return flag;
-    }
-
-    public void setFlag(boolean flag) {
-        this.flag = flag;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
     public List<HospitalInfo> getHospitalList() {
@@ -91,113 +55,109 @@ public class HospitalPage {
                 return new HospitalInfo[size];
             }
         };
-        private String id;
-        private String tsks;
-        private String bus;
-        private String cityName;
-        private String keshi;
-        private String provinceName;
-        private String addr;
-        private String zzjb;
-        private String hosName;
-        private String info;
+        private String address;
+        private int area;
+        private int count;
+        private String fax;
+        private int fcount;
+        private String gobus;
+        private int id;
         private String img;
+        private String level;
+        private String mail;
+        private String message;
+        private String mtype;
+        private String name;
+        private String nature;
+        private int rcount;
+        private String tel;
+        private String url;
+        @SerializedName("x")
+        private double longitude;
+        @SerializedName("y")
+        private double latitude;
+        private String zipcode;
 
         public HospitalInfo() {
         }
 
         protected HospitalInfo(Parcel in) {
-            this.id = in.readString();
-            this.tsks = in.readString();
-            this.bus = in.readString();
-            this.cityName = in.readString();
-            this.keshi = in.readString();
-            this.provinceName = in.readString();
-            this.addr = in.readString();
-            this.zzjb = in.readString();
-            this.hosName = in.readString();
-            this.info = in.readString();
+            this.address = in.readString();
+            this.area = in.readInt();
+            this.count = in.readInt();
+            this.fax = in.readString();
+            this.fcount = in.readInt();
+            this.gobus = in.readString();
+            this.id = in.readInt();
             this.img = in.readString();
+            this.level = in.readString();
+            this.mail = in.readString();
+            this.message = in.readString();
+            this.mtype = in.readString();
+            this.name = in.readString();
+            this.nature = in.readString();
+            this.rcount = in.readInt();
+            this.tel = in.readString();
+            this.url = in.readString();
+            this.latitude = in.readDouble();
+            this.longitude = in.readDouble();
+            this.zipcode = in.readString();
         }
 
-        public String getId() {
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public int getArea() {
+            return area;
+        }
+
+        public void setArea(int area) {
+            this.area = area;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
+
+        public String getFax() {
+            return fax;
+        }
+
+        public void setFax(String fax) {
+            this.fax = fax;
+        }
+
+        public int getFcount() {
+            return fcount;
+        }
+
+        public void setFcount(int fcount) {
+            this.fcount = fcount;
+        }
+
+        public String getGobus() {
+            return gobus;
+        }
+
+        public void setGobus(String gobus) {
+            this.gobus = gobus;
+        }
+
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
-        }
-
-        public String getTsks() {
-            return tsks;
-        }
-
-        public void setTsks(String tsks) {
-            this.tsks = tsks;
-        }
-
-        public String getBus() {
-            return bus;
-        }
-
-        public void setBus(String bus) {
-            this.bus = bus;
-        }
-
-        public String getCityName() {
-            return cityName;
-        }
-
-        public void setCityName(String cityName) {
-            this.cityName = cityName;
-        }
-
-        public String getKeshi() {
-            return keshi;
-        }
-
-        public void setKeshi(String keshi) {
-            this.keshi = keshi;
-        }
-
-        public String getProvinceName() {
-            return provinceName;
-        }
-
-        public void setProvinceName(String provinceName) {
-            this.provinceName = provinceName;
-        }
-
-        public String getAddr() {
-            return addr;
-        }
-
-        public void setAddr(String addr) {
-            this.addr = addr;
-        }
-
-        public String getZzjb() {
-            return zzjb;
-        }
-
-        public void setZzjb(String zzjb) {
-            this.zzjb = zzjb;
-        }
-
-        public String getHosName() {
-            return hosName;
-        }
-
-        public void setHosName(String hosName) {
-            this.hosName = hosName;
-        }
-
-        public String getInfo() {
-            return info;
-        }
-
-        public void setInfo(String info) {
-            this.info = info;
         }
 
         public String getImg() {
@@ -208,6 +168,102 @@ public class HospitalPage {
             this.img = img;
         }
 
+        public String getLevel() {
+            return level;
+        }
+
+        public void setLevel(String level) {
+            this.level = level;
+        }
+
+        public String getMail() {
+            return mail;
+        }
+
+        public void setMail(String mail) {
+            this.mail = mail;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMtype() {
+            return mtype;
+        }
+
+        public void setMtype(String mtype) {
+            this.mtype = mtype;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getNature() {
+            return nature;
+        }
+
+        public void setNature(String nature) {
+            this.nature = nature;
+        }
+
+        public int getRcount() {
+            return rcount;
+        }
+
+        public void setRcount(int rcount) {
+            this.rcount = rcount;
+        }
+
+        public String getTel() {
+            return tel;
+        }
+
+        public void setTel(String tel) {
+            this.tel = tel;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
+        }
+
+        public double getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+
+        public String getZipcode() {
+            return zipcode;
+        }
+
+        public void setZipcode(String zipcode) {
+            this.zipcode = zipcode;
+        }
+
         @Override
         public int describeContents() {
             return 0;
@@ -215,34 +271,26 @@ public class HospitalPage {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.id);
-            dest.writeString(this.tsks);
-            dest.writeString(this.bus);
-            dest.writeString(this.cityName);
-            dest.writeString(this.keshi);
-            dest.writeString(this.provinceName);
-            dest.writeString(this.addr);
-            dest.writeString(this.zzjb);
-            dest.writeString(this.hosName);
-            dest.writeString(this.info);
+            dest.writeString(this.address);
+            dest.writeInt(this.area);
+            dest.writeInt(this.count);
+            dest.writeString(this.fax);
+            dest.writeInt(this.fcount);
+            dest.writeString(this.gobus);
+            dest.writeInt(this.id);
             dest.writeString(this.img);
-        }
-
-        @Override
-        public String toString() {
-            return "HospitalInfo{" +
-                    "id='" + id + '\'' +
-                    ", tsks='" + tsks + '\'' +
-                    ", bus='" + bus + '\'' +
-                    ", cityName='" + cityName + '\'' +
-                    ", keshi='" + keshi + '\'' +
-                    ", provinceName='" + provinceName + '\'' +
-                    ", addr='" + addr + '\'' +
-                    ", zzjb='" + zzjb + '\'' +
-                    ", hosName='" + hosName + '\'' +
-                    ", info='" + info + '\'' +
-                    ", img='" + img + '\'' +
-                    '}';
+            dest.writeString(this.level);
+            dest.writeString(this.mail);
+            dest.writeString(this.message);
+            dest.writeString(this.mtype);
+            dest.writeString(this.name);
+            dest.writeString(this.nature);
+            dest.writeInt(this.rcount);
+            dest.writeString(this.tel);
+            dest.writeString(this.url);
+            dest.writeDouble(this.latitude);
+            dest.writeDouble(this.longitude);
+            dest.writeString(this.zipcode);
         }
     }
 }

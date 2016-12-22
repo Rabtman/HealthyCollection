@@ -1,13 +1,11 @@
 package com.rabt.healthycollection.api;
 
-import com.rabt.healthycollection.BuildConfig;
 import com.rabt.healthycollection.base.http.RetrofitManager;
 import com.rabt.healthycollection.model.bean.DrugInfoDetail;
 import com.rabt.healthycollection.model.bean.DrugInfoPage;
 import com.rabt.healthycollection.model.bean.HealthNewsDetail;
 import com.rabt.healthycollection.model.bean.HealthNewsPage;
 import com.rabt.healthycollection.model.bean.HospitalPage;
-import com.rabt.healthycollection.model.http.ShowApiResponse;
 
 import rx.Observable;
 
@@ -33,15 +31,23 @@ public class HealthService {
         return healthService.getHealthDetail(id);
     }
 
-    public Observable<DrugInfoPage> getDrugListInfo(String keyword, int page) {
-        return healthService.getDrugList("drug", "name", keyword, page);
+    public Observable<DrugInfoPage> searchDrugListInfo(String keyword, int page) {
+        return healthService.searchDrugs("drug", "name", keyword, page);
     }
 
     public Observable<DrugInfoDetail> getDrugInfoDetail(int id) {
         return healthService.getDrugDetail(id);
     }
 
-    public Observable<ShowApiResponse<HospitalPage>> getHospitalList(int page, String keyword, String provinceName, String cityName) {
-        return healthService.getHospitalList(BuildConfig.APP_ID, BuildConfig.API_SIGN, page, keyword, provinceName, cityName);
+    public Observable<HospitalPage> searchHospitalListInfo(String keyword, int page) {
+        return healthService.searchHospitals("hospital", "name", keyword, page);
+    }
+
+    public Observable<HospitalPage> getHospitalList(int page, double latitude, double longitude) {
+        return healthService.getHospitalList(page, latitude, longitude);
+    }
+
+    public Observable<HospitalPage.HospitalInfo> getHospitalInfoDetail(int id) {
+        return healthService.getHospitalDetail(id);
     }
 }
